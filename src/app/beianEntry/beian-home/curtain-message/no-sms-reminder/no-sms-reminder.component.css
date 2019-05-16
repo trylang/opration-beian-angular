@@ -1,0 +1,42 @@
+/*full-page*/
+.full-page {
+  width: 100%;
+  height: calc(100% - 50px);
+  position: fixed;
+  left: 0;
+  top: 50px;
+  overflow-y: auto;
+  background: #f5f5f5;
+  z-index: 1000;
+}
+
+.loyoutEdit_top{
+  overflow: hidden;
+  height: 180px;
+  background-color: rgb(68, 75, 83);
+}
+
+.process{
+  width:1000px;
+  min-height:400px;
+  background:rgba(255,255,255,1);
+  position: absolute;
+  left: 39%;
+  top: 100px;
+  margin-left: -350px;
+}
+.content-style {
+  width: 600px;
+  margin-left: 200px;
+  margin-top: 100px;
+}
+.note-style{
+  font-size:18px;
+  font-family:MicrosoftYaHei;
+  color:rgba(69,75,82,1);
+}
+.note-return-style {
+  font-size:14px;
+  font-family:MicrosoftYaHei;
+  color:rgba(145,145,145,1);
+}

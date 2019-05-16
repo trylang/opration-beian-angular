@@ -1,0 +1,25 @@
+
+
+{
+  "api_protocol": "http://",
+  "domain": "staging.inspur.com",
+  "defaultRegion": "cn-north-3",
+
+  "redirect_uri": "http://bss.inspurstaging.com/beian/",
+  "authUrl": "https://auth.inspurstaging.com/auth",
+  "authRealm": "picp",
+  "authClientId": "console",
+
+  "websocketServer": "ws://service.inspurstaging.com/console/websocket/v1/servers",
+  "marketUrl": "http://cloud.inspur.com/market/",
+  "filingBook":"http://cloud.inspur.com/docs.docbasc.dhtml",
+  "webDomain": "http://console.staging.inspur.com",
+
+  "bssFront":"http://bss.inspurstaging.com",
+  "bssAPI":"http://bssapi.inspurstaging.com/operation",
+  "productDocument": "http://console.inspurstaging.com/document/",
+  "serviceAPI": "http://service.inspurstaging.com"
+
+}
+
+

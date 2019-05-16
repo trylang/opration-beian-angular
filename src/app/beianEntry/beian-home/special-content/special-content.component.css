@@ -1,0 +1,14 @@
+.test-style>span {
+  display: block;
+  font-size: 16px;
+}
+
+[showStyle] {
+  color:pink;
+}
+[showStyle = "test1"] {
+  color: gray;
+}
+[showStyle~="test6"] {
+  color: black;
+}

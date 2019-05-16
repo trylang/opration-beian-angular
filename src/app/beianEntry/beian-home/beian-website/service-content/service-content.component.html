@@ -1,0 +1,16 @@
+<div class="web-item">
+  <span class="input-label"><i class="required-icon">*</i>网站服务内容：</span>
+  <div class="input-box">
+    <nz-checkbox-wrapper (nzOnChange)="changeHandle($event)">
+      <div nz-row>
+        <div nz-col nzSpan="8" *ngFor="let key of serviceContentList">
+          <label nz-checkbox [nzValue]="key" [ngModel]="key.checked">{{key.name}}</label>
+        </div>
+      </div>
+    </nz-checkbox-wrapper>
+  </div>
+  <span class="more" *ngIf="!ifMore" (click)="toggle('more')">更多 >></span>
+  <span class="fold" *ngIf="ifMore" (click)="toggle('fold')">收起 >></span>
+  <span class="remark-label">{{remark}}</span>
+</div>
+

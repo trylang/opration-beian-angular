@@ -1,0 +1,262 @@
+
+<div class="full-page">
+  <header class="header">
+    <!-- <p class="header-title">填写网站信息 --- {{remarkShow}} --- {{websitesListShow}}</p> -->
+    <p class="header-title">填写网站信息</p>
+  </header>
+  <nav class="web-container">
+
+    <!-- <div *ngIf="(websites | mywebsite).length > 0 || websitesListShow"> -->
+    <div *ngIf="websites.length > 0 || websitesListShow">
+      <h5 class="title">已填写的网站</h5>
+      <div class="content">
+        <nz-table class="table" #basicTable [nzData]="websites" nzNoResult="暂无数据" [nzShowPagination]="false">
+          <thead>
+            <tr>
+              <th>网站名称</th>
+              <th>域名</th>
+              <th>负责人姓名</th>
+              <th>负责人手机</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let data of (basicTable.data | mywebsite)"> -->
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{data.websiteName}}</td>
+              <td>{{data.domain}}</td>
+              <td>{{data.headerName}}</td>
+              <td>{{data.telephone1}}</td>
+              <td>
+                <a *ngIf="!typeinfo[param.type].hidedelte" style="margin-right: 20px;" (click)="deleteWebsiteItem(data)">删除</a>
+                <a [routerLink]="[ remarkShow ? '/home/type/organizer/websitesreview' : '/home/type/organizer/websites', data.id]" [queryParams]="param">编辑 </a>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+
+    <div *ngIf="!websitesListShow">
+      <h5 class="title">网站基本信息</h5>
+      <div class="content">
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>网站名称：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.websiteName" 
+            (blur)="chackWords(websitesParam.websiteName);"
+            [nzTitle]="promptMessage.mustwebsiteName" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.websiteName}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label">已验视域名：</span>
+          <div class="input-box">
+              <p *ngFor="let key of websitesParam.domainList; let i = index;">
+                <span *ngIf="key.id>0">{{key.domain}}</span>
+                <input style="width: 70%;margin-bottom: 10px;" *ngIf="!key.id" nz-input 
+                [(ngModel)]="key.domain" (blur)="checkWebsite(i, key.domain)">
+                <i *ngIf="key.isFirst==0" class="anticon anticon-close domain-icon" (click)="deleteDomainItem(i)"></i>
+              </p>
+              <!-- <span *ngIf="websitesParam.domainList.length<5" class="plus-domain" (click)="addDomainItem()"><i class="anticon anticon-plus-circle-o"></i>继续添加域名（多个域名需指向同一个网站）</span> -->
+              <span *ngIf="websitesParam.domainList.length<typeinfo[param.type].domaincount" class="plus-domain" (click)="addDomainItem()"><i class="anticon anticon-plus-circle-o"></i>继续添加域名（多个域名需指向同一个网站）</span>
+          </div>
+          <span class="remark-label">{{remarkObj.domain}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>网站首页URL：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.homeUrl" [nzTitle]="promptMessage.musthomeUrl" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.homeUrl}}</span>
+        </div>
+
+        <!-- 插入服务组件 -->
+        <service-content 
+        [list]="optionObj.serviceContentList"
+        [remark]="remarkObj.serviceContentName"
+        (handleService)="changeHandle($event)"
+        [nzTitle]="promptMessage.websiteService" nzPlacement="rightBottom" nz-tooltip></service-content>
+
+        <!-- <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>网站服务内容：</span>
+          <div class="input-box">
+            <nz-checkbox-wrapper (nzOnChange)="changeHandle($event)">
+              <div nz-row>
+                <div nz-col nzSpan="8" *ngFor="let key of optionObj.serviceContentList">
+                  <label nz-checkbox [nzValue]="key" [ngModel]="key.checked">{{key.name}}</label>
+                </div>
+              </div>
+            </nz-checkbox-wrapper>
+          </div>
+          <span class="remark-label">{{remarkObj.serviceContentName}}</span>
+        </div> -->
+
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>网站IP地址：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.instanceIp" [nzTitle]="promptMessage.mustinstanceIp" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.outerIps}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>网站语言选择：</span>
+          <div class="input-box">
+            <nz-select style="width: 160px;" [compareWith]="compareFn" 
+            [(ngModel)]="websitesParam.language"  [nzTitle]="promptMessage.mustlanguage" nzPlacement="right" nz-tooltip>
+              <nz-option
+                *ngFor="let option of optionObj.languageList"
+                [nzLabel]="option.name"
+                [nzValue]="option">
+              </nz-option>
+            </nz-select>
+          </div>
+          <span class="remark-label">{{remarkObj.languageName}}</span>
+        </div>
+
+        <div class="web-item">
+          <span class="input-label">前置或专项审批内容：</span>
+          <div class="input-box">
+            <nz-select style="width: 160px;" [compareWith]="compareFn" [(ngModel)]="websitesParam.specialApproval">
+              <nz-option
+                *ngFor="let option of optionObj.specialApprovalList"
+                [nzLabel]="option.name"
+                [nzValue]="option">
+              </nz-option>
+            </nz-select>
+          </div>
+          <span class="remark-label">{{remarkObj.specialApprovalName}}</span>
+        </div>
+
+        <div class="web-item">
+          <span class="input-label">备注：</span>
+          <div class="input-box">
+            <textarea class="website-input" nz-input rows="4" [(ngModel)]="websitesParam.note" nzAutosize ></textarea>
+          </div>
+          <span class="remark-label">{{remarkObj.note}}</span>
+        </div>
+
+      </div>
+
+      <h5 class="title">网站负责人信息</h5>
+      <div class="content border-bottom-1">
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>请选择网站负责人：</span>
+          <div class="input-box">
+            <nz-radio-group [(ngModel)]="websitesParam.herderAttribute">
+              <label class="radio-label" nz-radio nzValue="1">
+                <small class="radio-item">
+                  <small style="position: relative;">{{radio.headerName}} <small class="sponsor-remark-label">{{remarkObj.headerName}}</small></small>
+                  <small style="position: relative;">身份证：{{radio.headerNum}} <small class="sponsor-remark-label">{{remarkObj.headerNum}}</small></small> 
+                  <small style="position: relative;">手机：{{radio.telephone1}} <small class="sponsor-remark-label">{{remarkObj.telephone1}}</small></small> 
+                  <small style="position: relative;">座机：{{radio.telephone2}} <small class="sponsor-remark-label">{{remarkObj.telephone2}}</small></small> 
+                  <small style="position: relative;">邮箱：{{radio.email}} <small class="sponsor-remark-label">{{remarkObj.email}}</small></small> 
+                </small>
+              </label>
+              <label *ngIf="!radio.isPersonal" class="radio-label" nz-radio nzValue="0">
+                <small class="radio-item">填写新的负责人信息</small>
+              </label>
+            </nz-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <h5 class="title" *ngIf="websitesParam.herderAttribute==0">填写新的网站负责人信息</h5>
+      <div class="content border-bottom-1" *ngIf="websitesParam.herderAttribute==0">
+        <div class="web-item" style="margin-top: 15px;">
+          <span class="input-label"><i class="required-icon">*</i>负责人姓名：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.headerName" [nzTitle]="promptMessage.mustheaderName" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.newheaderName}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>负责人证件类型：</span>
+          <div class="input-box">
+            <nz-select style="width: 160px;" [compareWith]="compareFn" 
+            [(ngModel)]="websitesParam.headerTypeObj"
+            [nzTitle]="promptMessage.fzrzjlx" nzPlacement="right" nz-tooltip>
+              <nz-option
+                *ngFor="let option of optionObj.certificationList"
+                [nzLabel]="option.name"
+                [nzValue]="option" [nzDisabled]="option.name !=='身份证'">
+              </nz-option>
+            </nz-select>
+          </div>
+          <span class="remark-label">{{remarkObj.newheaderType}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>负责人证件号码：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.headerNum"
+             (blur)="checkCardId(websitesParam.headerNum)"
+             [nzTitle]="promptMessage.wzfzrzjhm" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.newheaderNum}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>联系方式1（手机号）：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.telephone1"
+            (blur)="phoneFunction(websitesParam.telephone1)"
+            [nzTitle]="promptMessage.sjhm" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.newtelephone1}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>验证码：</span>
+          <div class="input-box">
+            <input style="width: 54%;margin-right: 20px;" nz-input 
+            [(ngModel)]="websitesParam.validateCode"
+            [nzTitle]="promptMessage.sjyzm" nzPlacement="right" nz-tooltip>
+            <button nz-button nzType="default" [disabled]="countLabel !== '获取手机验证码'" 
+            (click)="getVerifyCode(websitesParam.telephone1)">{{countLabel}}</button>
+          </div>
+        </div>
+        <div class="web-item">
+          <span class="input-label">联系方式2（座机）：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.telephone2" 
+            [nzTitle]="promptMessage.bgsdh" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.newtelephone2}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>应急联系方式（手机号）：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.emergencyPhone"
+            (blur)="phoneFunction(websitesParam.emergencyPhone)">
+          </div>
+          <span class="remark-label">{{remarkObj.newemergencyPhone}}</span>
+        </div>
+        <div class="web-item">
+          <span class="input-label"><i class="required-icon">*</i>电子邮箱地址：</span>
+          <div class="input-box">
+            <input class="website-input" nz-input [(ngModel)]="websitesParam.email"
+            (blur)="emailFunction()"
+            [nzTitle]="promptMessage.dzyx" nzPlacement="right" nz-tooltip>
+          </div>
+          <span class="remark-label">{{remarkObj.newemail}}</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="actions input-box">
+      <button class="plus-domain" [disabled]="btnDisabled"
+      *ngIf="checkIfContinue()" 
+      (click)="websiteNext('addDomain')"><i class="anticon anticon-plus-circle-o"></i>  保存，并继续添加网站</button>
+      <div class="action">
+        <button class="btn" [disabled]="btnDisabled" (click)="websiteNext()" nz-button [nzType]="'primary'">
+          <span>下一步</span>
+        </button>
+        <button class="btn" nz-button (click)="goBack()" [nzType]="'default'">
+          <span>上一步</span>
+        </button>
+
+      </div>
+    </div>
+
+  </nav>
+</div>
+
+

@@ -1,0 +1,117 @@
+<div class="full-page">
+
+  <div class="header header-title"><p class="top-title">填写主体信息</p></div>
+  <div class="white-common-style">
+    <div class="white-area-style">
+      <p class="font-size-14">主办信息单位</p></div>
+    <div class="box margin-top-40">
+      <span class="margin-right-15" style="margin-left:282px;">主办单位性质：</span>
+      <span [hidden]="titleDataShow">{{info.typeName}}</span>
+      <span *ngIf="titleDataShow">{{titleData.typeName}}</span>
+    </div>
+    <div class="box margin-top-20">
+      <span class="margin-right-15 margin-left-259">主办单位证件类型：</span>
+      <span [hidden]="titleDataShow">{{info.certificationName}}</span>
+      <span *ngIf="titleDataShow">{{titleData.certificationName}}</span>
+    </div>
+    <div class="box margin-top-20">
+      <span class="margin-right-15 margin-left-259">主办单位证件号码：</span>
+      <span [hidden]="titleDataShow">{{info.certificationNum}}</span>
+      <span *ngIf="titleDataShow">{{titleData.certificationNum}}</span>
+    </div>
+
+    <div class="box margin-top-20">
+      <span class="color-red margin-left-259"></span><span class="margin-right-15">主办单位所属区域：</span>
+      <span [hidden]="titleDataShow">{{info.provinceName}}</span>
+      <span [hidden]="titleDataShow">{{info.cityName}}</span>
+      <span [hidden]="titleDataShow">{{info.countryName}}</span>
+
+      <span *ngIf="titleDataShow">{{titleData.provinceName}}</span>
+      <span *ngIf="titleDataShow">{{titleData.cityName}}</span>
+      <span *ngIf="titleDataShow">{{titleData.countryName}}</span>
+    </div>
+
+
+    <div class="box margin-top-20">
+      <span class="color-red" style="margin-left:233px;">*</span><span class="margin-right-15" >主办单位或主办人名称</span>
+      <input maxlength="128" class="input-width" nz-input placeholder="请输入内容" nzTitle="{{promptMessageService.dwmc}}" nzPlacement="rightBottom" nz-tooltip (blur)="verificationFunction('subjectArea',organizerParam.sponsorName)" [(ngModel)]="organizerParam.sponsorName">
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red margin-left-259">*</span><span class="margin-right-15">主办单位证件住所</span>
+      <input maxlength="128" class="input-width" nz-input placeholder="请输入内容" nzTitle="{{promptMessageService.dwzjzs}}" nzPlacement="rightBottom" nz-tooltip (blur)="verificationFunction('sponsorAddress',organizerParam.sponsorAddress)" [(ngModel)]="organizerParam.sponsorAddress"><br>
+    </div>
+    <div class="box margin-top-20">
+
+      <span class="color-red margin-left-259">*</span><span class="margin-right-15">主办单位通讯地址</span>
+      <span class="addressBox">
+        <span [hidden]="titleDataShow">{{info.provinceName}}</span>
+        <span [hidden]="titleDataShow">{{info.cityName}}</span>
+        <span [hidden]="titleDataShow">{{info.countryName}}</span>
+
+        <span *ngIf="titleDataShow">{{titleData.provinceName}}</span>
+        <span *ngIf="titleDataShow">{{titleData.cityName}}</span>
+        <span *ngIf="titleDataShow">{{titleData.countryName}}</span>
+        <input maxlength="128" style="width:50%;float:right;" nz-input placeholder="请勿重复填写省级行政单位" nzTitle="{{promptMessageService.dwtxdz}}" nzPlacement="rightBottom" nz-tooltip (blur)="verificationFunction('sponsorMailAddress',organizerParam.sponsorMailAddress)" [(ngModel)]="organizerParam.sponsorMailAddress"><br>
+      </span>
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red margin-left-259">*</span><span class="margin-right-15">投资人或主管单位</span>
+      <input maxlength="128" class="input-width" nz-input (blur)="verificationFunction('sponsorGovern',organizerParam.sponsorGovern)" placeholder="请输入内容" nzTitle="{{promptMessageService.tzhzgdw}}" nzPlacement="rightBottom" nz-tooltip [(ngModel)]="organizerParam.sponsorGovern"><br>
+    </div>
+
+
+    <div class="sponsor-message-style"> <p class="font-size-14">主体负责人信息</p></div>
+    <div class="box margin-top-40">
+      <span class="color-red" style="margin-left:297px;">*</span><span class="margin-right-15">负责人姓名</span>
+      <input nzTitle="{{promptMessageService.fzr}}" nzPlacement="rightBottom" nz-tooltip maxlength="64" class="input-width" nz-input placeholder="请输入内容" (blur)="verificationFunction('headerName',organizerParam.headerName)" [(ngModel)]="organizerParam.headerName"><br>
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red" style="margin-left:272px;">*</span><span class="margin-right-15" >负责人证件类型</span>
+      <nz-select class="input-width" [(ngModel)]="verificationType" nzTitle="{{promptMessageService.dwzjlx}}" nzPlacement="rightBottom" nz-tooltip nzPlaceHolder="请选择证件类型">
+        <nz-option *ngFor="let option of principalCertificate"
+           [nzLabel]="option.name"
+           [nzValue]="option.code">
+        </nz-option>
+      </nz-select>
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red" style="margin-left:272px;">*</span><span class="margin-right-15">负责人证件号码</span>
+      <input [disabled]="!(verificationType)" maxlength="64" class="input-width" nz-input (blur)="verificationFunction('headerNum',organizerParam.headerNum)" placeholder="请输入内容" [(ngModel)]="organizerParam.headerNum">
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red" style="margin-left:242px;">*</span><span class="margin-right-15">联系方式1（手机号）</span>
+      <input maxlength="11" (blur)="verificationFunction('phoneData',organizerParam.telephone1)" class="input-width" nz-input placeholder="请输入内容" nzTitle="{{promptMessageService.sjhm}}" nzPlacement="rightBottom" nz-tooltip [(ngModel)]="organizerParam.telephone1"><br>
+      <!--phoneData-->
+    </div>
+    <div class="box margin-top-20">
+
+      <span class="color-red" style="margin-left:316px;">*</span><span class="margin-right-15">验证码</span>
+      <input maxlength="6" (blur)="verificationFunction('verificationCode',organizerParam.validateCode)" class="verification-input-style" nz-input placeholder="请输入内容" nzTitle="{{promptMessageService.sjyzm}}" nzPlacement="rightBottom" nz-tooltip [(ngModel)]="organizerParam.validateCode">
+      <button nz-button class="get-phonecode-style" (click)="getPhoneCode()">{{code_context}}</button>
+
+    </div>
+    <div class="box margin-top-20">
+      <span class="margin-right-15" style="margin-left:255px;">联系方式2（座机）</span>
+      <span class="show-phone-style">{{areaShowNumber}}</span>
+      <input class="contact-two-style" nz-input placeholder="请输入内容" nzTitle="{{promptMessageService.bgsdh}}" nzPlacement="rightBottom" nz-tooltip [(ngModel)]="organizerParam.telephone2"><br>
+
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red" style="margin-left:224px;">*</span><span class="margin-right-15">应急联系方式（手机号）</span>
+      <input class="input-width" maxlength="11" nz-input (blur)="verificationFunction('emergencyPhone',organizerParam.emergencyPhone)" placeholder="请输入内容" nzTitle="{{promptMessageService.emergencyPhoneMessage}}" nzPlacement="rightBottom" nz-tooltip [(ngModel)]="organizerParam.emergencyPhone"><br>
+    </div>
+    <div class="box margin-top-20">
+      <span class="color-red" style="margin-left:285px;">*</span><span class="margin-right-15">电子邮件地址</span>
+      <input maxlength="64" class="input-width" (blur)="verificationFunction('emailAddress',organizerParam.email)" nz-input placeholder="请输入内容" nzTitle="{{promptMessageService.dzyx}}" nzPlacement="rightBottom" nz-tooltip [(ngModel)]="organizerParam.email"><br>
+    </div>
+
+
+    <div class="turn-button-style">
+      <button  nz-button nzType="primary" style="margin-left:379px;margin-top:30px;"   (click)= "sponsorMessageKeep()"><p style="line-height:37px;">下一步</p></button>
+      <button  nz-button (click)="return()"><p style="line-height:37px;">返回</p></button>
+    </div>
+  </div>
+
+
+</div>
+

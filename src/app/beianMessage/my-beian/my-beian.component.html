@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h4 class="h4_title">备案管理</h4>
+  </div>
+  <!--<hr/>-->
+
+  <!--<div class="note-message">-->
+  <!--<div style="padding: 15px 0 5px 15px">-->
+  <!--<p>-->
+  <!--重要提醒：2018年1月1日起，工信部要求备案域名必须完成域名实名认证，未完成实名认证、实名信息与备案信息不一致等会被管局驳回。-->
+  <!--</p>-->
+  <!--<p>-->
+  <!--温馨提示：备案订单有效期为45天(自提交当天开始计算)，订单超期后自动失效，请您尽快提交并完成备案。为避免影响网站备案及访问，请注意服务器的服务期限及时续费。-->
+  <!--</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <div class="subject-div-style" *ngIf ='isOperationManager'>
+    <div style="padding: 5px 0 5px 5px">
+      <button nz-button nzType="primary" (click)="createSubject()" class="add-subject-style">添加主体</button>
+    </div>
+  </div>
+  <div class="my_beian_table">
+    <nz-table
+      #basicTable
+      [nzData]=dataSet
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      [nzNoResult]="noResult"
+      [nzShowTotal]="totalNumber"
+      [nzTotal]="totalElements"
+      [nzShowSizeChanger]="true"
+      (nzPageIndexChange)="pageChange()"
+      (nzPageSizeChange)="pageChange()"
+      [nzFrontPagination]="false">
+      <thead>
+      <tr>
+        <th>ICP主体备案号</th>
+        <th>主办单位名称</th>
+        <th>负责人</th>
+        <th>ICP主体备案状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.subjectRecordNumber}}</td>
+        <td>{{data.sponsorName}}</td>
+        <td>{{data.headerName}}</td>
+        <td>{{data.subjectIcpStatusName}}</td>
+        <td width="230px">
+          <a style="display: inline-block;margin-right: 5px;" (click)="verifyNextStepFunction(data,'addWebisteMark')">增加网站备案</a>
+          <nz-dropdown>
+            <span nz-dropdown class="action-more-button" style="display: inline-block; cursor: pointer;color:#36B3DF;">更多<i nz-icon="" type="down" class="anticon anticon-down"></i></span>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a (click)="verifyNextStepFunction(data,'accessBeianMark')" style="text-align: center;">继续接入备案</a>
+              </li>
+              <li nz-menu-item>
+                <a (click)="verifyNextStepFunction(data,'logoutSponsorMark')" style="text-align: center;">注销主体</a>
+              </li>
+              <li nz-menu-item>
+                <a routerLink="./{{data.id}}/sponsor" style="text-align: center;">查看主体详情</a>
+              </li>
+              <li nz-menu-item>
+                <a (click)="verifyNextStepFunction(data,'changeSponsorMark')" style="text-align: center;">变更主体</a>
+              </li>
+              <li nz-menu-item>
+                <a routerLink="{{data.id}}" style="text-align: center;">查看主体下网站</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+        </td>
+      </tr>
+      </tbody>
+      <ng-template #totalNumber>
+        <span>共</span><span>{{ totalElements }}</span><span>条</span>
+      </ng-template>
+      <ng-template #noResult>
+        <div class="table-no-result">
+          您还没有备案记录！
+        </div>
+      </ng-template>
+    </nz-table>
+  </div>
+
+</div>

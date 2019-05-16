@@ -1,0 +1,13 @@
+::ng-deep .text-nowrap.text-ellipsis .help-text{
+  margin-left:0;
+}
+::ng-deep .ng-star-inserted p{
+  margin-bottom: 10px !important;
+}
+::ng-deep .help-text {
+  margin-top: 6px !important;
+  margin-bottom: 0 !important;
+  color: #bababa !important;
+  line-height: 20px !important;
+  margin-left:0 !important;
+}

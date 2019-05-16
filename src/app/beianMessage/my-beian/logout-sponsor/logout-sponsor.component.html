@@ -1,0 +1,36 @@
+<div>
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="../../../"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>注销备案验证</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <!--单位信息-->
+  <div  class="employer-common-style">
+    <div class="common-title">
+      <p>产品类型：浪潮云</p>
+    </div>
+    <hr style="width: 98%;" />
+    <div class="logout-div-style">
+      <span style="color:#919191;">ICP备案密码提交后将直接由管局审核验证，如果忘记密码，请通过各地管局网址找回密码。</span><span style="color:rgba(54,179,223,1);display: none;">如何找回备案密码？</span>
+    </div>
+    <div class="logout-div-style">
+      <span style="color:#919191;">
+        ICP备案密码：
+      </span>
+      <input (blur)="icpPasswordFunction()" maxlength="32" type="text" class="password-input-style" nz-input [(ngModel)]="logoutSponsorParams.password">
+    </div>
+  </div>
+  <div class="bottom-sponsor-style">
+    <button  nz-button nzType="primary" (click)="logoutVerification()">确定</button>
+    <button  nz-button (click)="returnList()">返回</button>
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="logoutVisible" nzTitle="提示" (nzOnCancel)="submitCancel()" (nzOnOk)="submitOk()">
+  <i style="font-size: 16px;margin-right: 20px;background-color: #FFBF00;color: #fff;border-radius: 10px;" class="anticon anticon-exclamation-circle-o"></i>
+  <p>{{warningMessage}}</p>
+</nz-modal>
+

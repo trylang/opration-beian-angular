@@ -1,0 +1,107 @@
+<div>
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="../../"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>主体详情</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <!--单位信息-->
+  <div  class="employer-common-style">
+    <div class="common-title">
+      <p>主办单位信息</p>
+    </div>
+    <div>
+      <div class="organizer-style">
+        <div>
+          <span class="left-label-style">主办单位性质：</span>
+          <span>{{dataSet.typeName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">主办单位证件类型：</span>
+          <span>{{dataSet.certificationName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">主办单位证件号码：</span>
+          <span>{{dataSet.certificationNum}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">主办单位所属区域：</span>
+          <span>{{dataSet.provinceName}}{{dataSet.cityName}}{{dataSet.countryName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">主办单位或主办人名称：</span>
+          <span>{{dataSet.sponsorName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">主办单位证件住所：</span>
+          <span>{{dataSet.sponsorAddress}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">主办单位通讯地址：</span>
+          <span>{{dataSet.sponsorMailAddress}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">投资人或主办单位：</span>
+          <span>{{dataSet.sponsorGovern}}</span>
+        </div>
+      </div>
+      <div class="organizer-style organizer-right">
+        <div>
+          <span class="left-label-style">负责人姓名：</span>
+          <span>{{dataSet.headerName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">负责人证件类型：</span>
+          <span>{{dataSet.headerTypeName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">负责人证件号码：</span>
+          <span>{{dataSet.headerNum}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">联系方式1（手机号）：</span>
+          <span>{{dataSet.telephone1}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">联系方式2（座机）：</span>
+          <span>{{dataSet.telephone2}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">应急联系方式（手机号）：</span>
+          <span>{{dataSet.emergencyPhone}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">电子邮件地址：</span>
+          <span>{{dataSet.email}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--备案材料-->
+  <div class="img-common-style">
+    <div>
+      <p class="common-title">备案材料</p>
+    </div>
+    <div class="beian_content">
+      <div *ngFor ="let item of mainBodyImages">
+        <div *ngIf="item.fileAttribute2 == 'original'">
+          <div class="photo-title-style">{{dataObj[item.fileAttribute]}}</div>
+          <div *ngIf="item.fileAttribute2 == 'original'" class="other-photo-style">
+            <a (click)="previewFn(item.fuleUrl)">
+              <img class="img_style" src="{{item.fuleUrl}}">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 证件认证图片预览 -->
+<nz-modal appDragdrop nzTitle="图片预览" [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+  <ng-template #modalContent>
+    <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+  </ng-template>
+</nz-modal>

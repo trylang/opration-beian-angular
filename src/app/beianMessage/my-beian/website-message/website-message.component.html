@@ -1,0 +1,129 @@
+<div>
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="../"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>主体下网站列表</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div style="margin-bottom: 15px;" class="website_table">
+    <p>
+      备案主体信息
+    </p>
+    <nz-table
+      #basicTable
+      [nzBordered] = "true"
+      [nzShowPagination]="false"
+      [nzNoResult]="hiddenData"
+    >
+      <thead>
+      <tr>
+        <th>ICP主体备案号</th>
+        <th>主办单位名称</th>
+        <th>负责人</th>
+        <th>ICP主体备案状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{sponsorEntityShowParams.subjectRecordNumber}}</td>
+        <td>{{sponsorEntityShowParams.sponsorName}}</td>
+        <td>{{sponsorEntityShowParams.headerName}}</td>
+        <td>{{sponsorEntityShowParams.subjectIcpStatusName}}</td>
+        <td width="230px">
+          <span style="display: inline-block; cursor: pointer;color:#36B3DF;margin-right: 5px;" (click)="verifyNextStepFunction('addWebisteMark')">增加网站备案</span>
+          <nz-dropdown>
+            <span nz-dropdown class="action-more-button" style="display: inline-block; cursor: pointer;color:#36B3DF;">更多<i nz-icon="" type="down" class="anticon anticon-down"></i></span>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a style="text-align:center;" (click)="verifyNextStepFunction('accessBeianMark')">继续接入备案</a>
+              </li>
+              <li nz-menu-item>
+                <a style="text-align:center;" (click)="verifyNextStepFunction('logoutSponsorMark')">注销主体</a>
+              </li>
+              <li nz-menu-item>
+                <a routerLink="./sponsor" style="text-align:center;">查看主体详情</a>
+              </li>
+              <li nz-menu-item>
+                <a style="text-align:center;" (click)="verifyNextStepFunction('changeSponsorMark')">变更主体</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <div class="website_table">
+    <p>
+      备案网站信息
+    </p>
+    <nz-table
+      #basicTable
+      [nzData]="websiteParams"
+      [nzBordered] = "true"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      [nzNoResult]="noResult"
+      [nzLoading]="isLoading"
+      [nzShowTotal]="totalNumber"
+      [nzTotal]="totalElements"
+      [nzShowSizeChanger]="true"
+      (nzPageIndexChange)="pageChange()"
+      (nzPageSizeChange)="pageChange()"
+      [nzFrontPagination]="false"
+    >
+      <thead>
+      <tr>
+        <th>ICP主体备案号</th>
+        <th>网站名称</th>
+        <th>负责人</th>
+        <th>ICP主体备案状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.icpWebsiteCode}}</td>
+        <td>{{data.websiteName}}</td>
+        <td>{{data.headerName}}</td>
+        <td>{{data.icpWebsiteStatusName}}</td>
+        <td width="230px">
+          <!--(click)="jumpToChangePage(data.id,'modifyWebsiteMark')"-->
+          <span class="websiteChangeStyle" (click)="sponsorDetail(data.id)">变更网站信息</span>
+          <nz-dropdown>
+              <span nz-dropdown class="action-more-button" style="display: inline-block; cursor: pointer;color:#36B3DF;">更多<i nz-icon="" type="down" class="anticon anticon-down"></i></span>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a routerLink="../{{data.id}}/detail" style="text-align:center;">查看详情</a>
+              </li>
+              <li nz-menu-item>
+                <a style="text-align:center;" (click)="jumpToChangePage(data.id,'logoutWebsiteMark')">注销网站</a>
+              </li>
+              <li nz-menu-item>
+                <a style="text-align:center;" (click)="jumpToChangePage(data.id,'cancelAccessMark')">取消接入</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+        </td>
+      </tr>
+      </tbody>
+      <ng-template #totalNumber>
+        <span>共</span><span>{{ totalElements }}</span><span>条</span>
+      </ng-template>
+      <ng-template #hiddenData>
+        <div class="table-no-result">
+        </div>
+      </ng-template>
+      <ng-template #noResult>
+        <div class="table-no-result">
+          您还没有备案记录！
+        </div>
+      </ng-template>
+    </nz-table>
+  </div>
+
+
+</div>

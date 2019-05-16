@@ -1,0 +1,101 @@
+<div>
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="/order"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>主体信息确认</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <!--单位信息-->
+  <div  class="employer-common-style">
+    <div>
+      <div class="common-title">
+        <p>主办单位信息</p>
+      </div>
+      <div>
+        <div class="organizer-style">
+          <div>
+            <span>主办单位性质：</span><span>{{dataSet.typeName}}</span>
+          </div>
+          <div>
+            <span>主办单位证件类型：</span><span>{{dataSet.certificationName}}</span>
+          </div>
+          <div>
+            <span>主办单位证件号码：</span><span>{{dataSet.certificationNum}}</span>
+          </div>
+          <div>
+            <span>主办单位所属区域：</span><span>{{dataSet.provinceName}}{{dataSet.cityName}}{{dataSet.countryName}}</span>
+          </div>
+          <div>
+            <span>主办单位或主办人名称：</span><span>{{dataSet.sponsorName}}</span>
+          </div>
+          <div>
+            <span>主办单位证件住所：</span><span>{{dataSet.sponsorAddress}}</span>
+          </div>
+          <div>
+            <span>主办单位通讯地址：</span><span>{{dataSet.sponsorMailAddress}}</span>
+          </div>
+          <div>
+            <span>投资人或主办单位：</span><span>{{dataSet.sponsorGovern}}</span>
+          </div>
+        </div>
+        <div class="organizer-style organizer-right">
+          <div>
+            <span>负责人姓名：</span><span>{{dataSet.headerName}}</span>
+          </div>
+          <div>
+            <span>负责人证件类型：</span><span>{{dataSet.headerTypeName}}</span>
+          </div>
+          <div>
+            <span>负责人证件号码：</span><span>{{dataSet.headerNum}}</span>
+          </div>
+          <div>
+            <span>联系方式1（手机号）：</span><span>{{dataSet.telephone1}}</span>
+          </div>
+          <div>
+            <span>联系方式2（座机）：</span><span>{{dataSet.telephone2}}</span>
+          </div>
+          <div>
+            <span>应急联系方式（手机号）：</span><span>{{dataSet.emergencyPhone}}</span>
+          </div>
+          <div>
+            <span>电子邮件地址：</span><span>{{dataSet.email}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--验证产品信息页面-->
+    <!--<div *ngIf="productStyle">-->
+    <!--<div class="common-title">-->
+    <!--<p>验证产品信息</p>-->
+    <!--</div>-->
+    <!--<div class="common-detail-style">-->
+    <!--<span>你的备案类型为</span><span style="color:rgba(54,179,223,1);">新增网站</span><span>，为了更好地额给您提供服务，请先验证购买的产品。</span>-->
+    <!--<div>-->
+    <!--<span>域名：</span>-->
+    <!--<span>www.</span>-->
+    <!--<input (blur)="domainVerification()" style="margin-left: 0.5%;" type="text" nz-input>-->
+    <!--</div>-->
+    <!--<div>-->
+    <!--<span>购买的实例IP：</span>-->
+    <!--<input type="text" nz-input>-->
+    <!--<i style="color:rgba(54,179,223,1);display: inline-block;margin-left: 5px;cursor:pointer;" class="fa fa-question-circle" nz-popover [nzContent]="contentTemplate" nzPlacement="right"></i>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+  </div>
+  <div class="bottom-sponsor-style">
+    <button  nz-button nzType="primary" (click)="sponsorDataVerification()">信息确认，下一步</button>
+    <button  nz-button (click)="sponsorChangeReturn()">返回</button>
+  </div>
+</div>
+<!--问号右侧的提示信息-->
+<!-- <ng-template #contentTemplate>
+  <div style="width: 281px;height: 82px;">
+    <p style="font-size:12px;font-family:MicrosoftYaHeiUI;color:rgba(177,177,177,1);">
+      请填写域名备案成功后需解析的外网IP地址（我司IP）。如您还未购买我司IP，请前往控制台先购买浪潮云主机与外网弹性IP（EIP）多个IP请用英文分号“；”分开。
+    </p>
+  </div>
+</ng-template> -->
+

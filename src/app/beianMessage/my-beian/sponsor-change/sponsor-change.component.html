@@ -1,0 +1,137 @@
+<div style="min-width: 1100px;">
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="../../../"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>修改主体信息</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <!--单位信息-->
+  <div  class="employer-common-style">
+    <div class="common-title">
+      <p>主办单位信息</p>
+    </div>
+    <div>
+      <div class="organizer-style" style="width: 450px;">
+        <div class="label-style">
+          <span>主办单位性质：</span>
+          <nz-select class="show-style" [(ngModel)]="sponsorDetailData.typeId" (ngModelChange)="selectTypeId($event)">
+            <nz-option *ngFor="let option of cardTypelist" [nzLabel]="option.name" [nzValue]="option.code" ></nz-option>
+          </nz-select>
+        </div>
+        <div class="label-style">
+          <span>主办单位证件类型：</span>
+          <nz-select class="show-style" [(ngModel)]="sponsorDetailData.certificationId">
+            <nz-option *ngFor="let option of certificationList" [nzLabel]="option.name" [nzValue]="option.code" ></nz-option>
+          </nz-select>
+        </div>
+        <div class="label-style">
+          <span>主办单位证件号码：</span>
+          <input type="text" class="show-style" (blur)="mainPlaceNumberVerification()" [(ngModel)]="sponsorDetailData.certificationNum" nz-input>
+        </div>
+        <div>
+          <span class="area-span-style">主办单位所属区域：</span>
+          <div>
+            <div style="margin-left: 31%;margin-top: -23px;float: left;">
+              <nz-select style="width: 90px;" [(ngModel)]="sponsorDetailData.provinceId" (ngModelChange)="selectCity($event)" >
+                <nz-option
+                  *ngFor="let option of citysData.provinceList"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.code">
+                </nz-option>
+              </nz-select>
+              <nz-select style="width: 90px;" [(ngModel)]="sponsorDetailData.cityId" (ngModelChange)="selectCountry($event)">
+                <nz-option
+                  *ngFor="let option of chengshiData.city"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.code">
+                </nz-option>
+              </nz-select>
+              <nz-select [(ngModel)]="sponsorDetailData.countryId" style="width: 90px;">
+                <nz-option
+                  *ngFor="let option of chengshiData.country"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.code">
+                </nz-option>
+              </nz-select>
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="organizer-style organizer-right">
+        <div class="label-style">
+          <span>主办单位或主办人名称：</span>
+          <input class="show-style" (blur)="organiserVerification()" [(ngModel)]="sponsorDetailData.sponsorName" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>主办单位证件住所：</span>
+          <input class="show-style" (blur)="cardAddressVerification()" [(ngModel)]="sponsorDetailData.sponsorAddress" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>主办单位通讯地址：</span>
+          <input class="show-style" (blur)="sponsorMailAddressVerification()" [(ngModel)]="sponsorDetailData.sponsorMailAddress" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>投资人或主办单位：</span>
+          <input class="show-style" (blur)="sponsorGovernVerification()"  [(ngModel)]="sponsorDetailData.sponsorGovern" type="text" nz-input>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--负责人信息-->
+  <div  class="employer-common-style bottom-area-style">
+    <div class="common-title">
+      <p>负责人信息</p>
+    </div>
+    <div>
+      <div class="organizer-style" style="width: 450px;">
+        <div class="label-style">
+          <span>负责人姓名：</span>
+          <input class="show-style" (blur)="headerNameVerification()" [(ngModel)]="sponsorDetailData.headerName" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>负责人证件类型：</span>
+          <nz-select class="show-style" [(ngModel)]="sponsorDetailData.headerType">
+            <nz-option *ngFor="let option of principalCertificate" [nzValue]="option.code" [nzLabel]="option.name"></nz-option>
+          </nz-select>
+        </div>
+        <div class="label-style">
+          <span>负责人证件号码：</span>
+          <input class="show-style" (blur)="headerNumVerification()" [(ngModel)]="sponsorDetailData.headerNum" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>联系方式1（手机）：</span>
+          <input class="show-style" (blur)="telephone1Verification()" [(ngModel)]="sponsorDetailData.telephone1" type="text" nz-input>
+        </div>
+
+      </div>
+      <div class="organizer-style organizer-right">
+        <div class="label-style">
+          <span>验证码：</span>
+          <input class="verification-code-style" [(ngModel)]="verificationCode" (blur)="verificationCodeFunction()" type="text" nz-input>
+          <button nz-button style="margin-left: 1%;" (click)="sendPhoneVerification()">{{code_context}}</button>
+        </div>
+        <div class="label-style">
+          <span>联系方式2（座机）：</span>
+          <input class="show-style" [(ngModel)]="sponsorDetailData.telephone2" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>应急联系方式（手机号）：</span>
+          <input class="show-style" (blur)="emergencyPhoneVerification()" [(ngModel)]="sponsorDetailData.emergencyPhone" type="text" nz-input>
+        </div>
+        <div class="label-style">
+          <span>电子邮件地址：</span>
+          <input class="show-style" (blur)="emailVerification()" [(ngModel)]="sponsorDetailData.email" type="text" nz-input>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-sponsor-style">
+    <button  nz-button nzType="primary" style="width:70px;" (click)="submitSponsorData()">下一步</button>
+    <button  nz-button style="width:70px;" (click)="sponsorChangeReturn()">返回</button>
+  </div>
+</div>

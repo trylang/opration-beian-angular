@@ -1,0 +1,33 @@
+.note-message{
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(90,90,90,1);
+  line-height:16px;
+  border:1px solid rgba(240,240,240,1)
+}
+.h4_title{
+  height: 39px;
+  font-size: 20px;
+  color:#454B52;
+  border-bottom: #e9e9e9;
+}
+.my_beian_table{
+  margin-top: 15px;
+}
+::ng-deep .my_beian_table th{
+  border-right: 1px solid #d3dbdf;
+  border-bottom: none !important;
+}
+::ng-deep .my_beian_table th:last-child{
+  border-right: none;
+}
+.add-subject-style {
+  margin-left: 8px;
+  width: 112px;
+  height:38px;
+  font-size: 16px;
+}
+.subject-div-style {
+  border:1px solid rgba(240,240,240,1);
+  margin-top: 10px;
+}

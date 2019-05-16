@@ -1,0 +1,99 @@
+.page-title {
+  min-height: 48px;
+  margin: -20px -20px 20px -20px;
+  padding-top: 25px;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.employer-common-style{
+  height: 364px;
+  width: 100%;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(233,233,233,1);
+}
+.organizer-style {
+  float: left;
+}
+.organizer-right{
+  margin-left: 10%;
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(40,47,56,1);
+  line-height:16px;
+}
+.organizer-style>div {
+  margin-top: 15px;
+}
+.organizer-style>div>span:first-child {
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(145,145,145,1);
+  line-height:16px;
+  margin-left: 15px;
+  width: 140px;
+}
+.organizer-style>div>span:last-child {
+  color:#282F38;
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  line-height:16px;
+  margin-left: 15px;
+}
+.common-title {
+  font-size:14px;
+  font-family:MicrosoftYaHeiUI;
+  color:rgba(51,51,51,1);
+  line-height:19px;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+
+.per_examples>div{
+  width: 265px;
+  height: 160px;
+  padding: 3px;
+  background-color: #fff;
+  border: 1px solid #D9D9D9;
+  margin-left: 20px;
+  margin-top: 17px;
+}
+.per_examples>div>img{
+  max-width: 260px;
+  height: 150px;
+}
+
+.img-common-style{
+  height: 100%;
+  width: 100%;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(233,233,233,1);
+  margin-top: 15px;
+}
+
+.photo-title-style {
+  float: left;
+  margin-left: 25px;
+  margin-top: 5%;
+}
+.other-photo-style {
+  margin-left: 240px;
+  margin-top: 3.5%;
+  width: 260px;
+  height: 150px;
+}
+.img_style{
+  width: 200px;
+  height: 120px;
+}
+.beian_content>div{
+  margin-bottom:10px;
+  margin-top:10px;
+}
+
+.left-label-style {
+  display: inline-block;
+  min-width: 150px;
+}

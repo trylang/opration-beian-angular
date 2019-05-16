@@ -1,0 +1,267 @@
+/*full-page*/
+.full-page {
+  width: 100%;
+  height: calc(100% - 50px);
+  position: fixed;
+  left: 0;
+  top: 50px;
+  overflow-y: auto;
+  background: #f5f5f5;
+  z-index: 1000;
+}
+.box{
+  width:100%;
+  height:30px;
+  margin-top: 20px;
+}
+.address{
+  width:100%;
+  height:30px;
+  margin-top: 40px;
+}
+.area{
+  margin-right: 15px;
+}
+.area1{
+  width: 120px;
+}
+.header{
+  width:100%;
+  height:125px;
+  background:rgba(69,75,82,1);
+  position:relative
+}
+.title{
+  height:24px;
+  font-size:18px;
+  font-family:MicrosoftYaHei;
+  color:rgba(255,255,255,1);
+  line-height:24px;
+  position:absolute;
+  left:214px;
+  top:15px;
+}
+.clear-both{
+  width:100%;
+  height:600px;
+}
+.main-body{
+  background:white;
+  height:658px;
+  width:1000px;
+  position:absolute;
+  left:50%;
+  margin-left: -500px;
+  top:49px;
+}
+.reminder{
+  width:960px;
+  height:130px;
+  background:rgba(252,252,252,1);
+  border:1px solid rgba(240,240,240,1);
+  margin:20px auto;
+}
+.reminder-top{
+  margin-top: 17px;
+  margin-left:16px;
+  height:16px;
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(90,90,90,1);
+  line-height:16px;
+}
+.aline{
+  text-decoration:none;
+  margin-left:76px;
+}
+.reminder-bottom{
+  margin-top:5px;
+}
+.reminder-bottom span:nth-child(1){
+  margin-left:16px;
+  float:left;
+}
+.reminder-bottom span:nth-child(2){
+  width: 680px;
+  line-height:26px;
+  text-align: left;
+  display: inline-block;
+}
+.hrline{
+  width:960px;
+  height:1px;
+  background:rgba(224,224,224,1);
+}
+.reminder-message{
+  width:960px;
+  height:50px;
+  background:rgba(252,252,252,1);
+  border:1px solid rgba(240,240,240,1);
+  margin:20px auto 0;
+}
+.start-beian{
+  width:132px;
+  height:16px;
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(90,90,90,1);
+  line-height:16px;
+  margin:17px auto;
+}
+.beian{
+  height:16px;
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(90,90,90,1);
+  line-height:16px;
+  margin-top:17px;
+  margin-left:246px;
+}
+.type-label{
+  color:#36B3DF;
+}
+.area-two{
+  margin-left:20px;
+  margin-top:20px;
+}
+.span-two{
+  margin-right: 15px;
+}
+
+.area-zhuban{
+  margin-left:20px;
+  margin-top:40px;
+}
+.danwei-type{
+  margin-right:15px;
+  margin-left:22px;
+}
+.domain-two{
+  color:red;
+  margin-left:96px;
+  width:119px;
+}
+.buyip{
+  color:red;
+  margin-left:46px;
+  width:119px;
+}
+.input-ip{
+  width: 316px;
+  margin-right:10px;
+}
+.box span:nth-child(2){
+  margin-right: 15px;
+}
+.left259{
+  color:red;
+  margin-left:259px ;
+}
+.character{
+  color:#F04134;
+  margin-left:283px;
+}
+.input-w{
+  width: 361px;
+}
+.domain{
+  color:red;
+  margin-left:336px;
+}
+.www{
+  margin-right:12px;
+}
+.input-domain{
+  width: 316px;
+  margin-right:24px;
+}
+.validate{
+  color:red;
+  margin-left:320px;
+}
+.input-validate{
+  width: 220px;
+  margin-right:24px;
+}
+.show-modal{
+  margin-left:447px;
+  margin-top:30px;
+  width:118px;
+  height:37px;
+}
+.main-two{
+  margin:0 auto;
+  background:white;
+  height:507px;
+  width:1000px;
+  position:absolute;
+  left:214px;
+  top:49px;
+}
+
+.turn-button-style {
+  margin-left: 38%;
+  margin-top: 82px;
+}
+
+.turn-button-style > button {
+  margin-right: 20px;
+  width:118px;
+  height:37px;
+}
+
+.reload-icon {
+  font-size:  18px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+
+
+
+.main-three{
+  margin:0 auto;
+  background:white;
+  height:507px;
+  width:1000px;
+  position:absolute;
+  left:214px;
+  top:49px;
+}
+.find{
+  width:960px;
+  height:50px;
+  background:rgba(252,252,252,1);
+  border:1px solid rgba(240,240,240,1);
+  margin: 20px auto 0;
+}
+.find-password{
+  height:16px;
+  font-size:12px;
+  font-family:MicrosoftYaHei;
+  color:rgba(90,90,90,1);
+  line-height:16px;
+  margin-top:17px;
+  margin-left:246px;
+}
+.pass{
+color:#36B3DF;
+}
+.span-three{
+  color:red;
+  margin-left:46px;
+  width:119px;
+}
+.input-three{
+  width: 316px;
+  margin-right:10px;
+}
+.validatec-img {
+  display: inline-block;
+  min-width: 110px;
+  max-width:200px;
+}
+.validatec-img i {
+  float:right;
+  margin-top: 10px;
+}

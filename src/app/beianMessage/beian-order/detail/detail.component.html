@@ -1,0 +1,23 @@
+<section>
+  <header>
+    <h3>备案订单号： {{detailInfo.orderInfo.id}}</h3>
+    <span [innerHtml]=" detailInfo.orderInfo.statusId | status: 'orderstatus' : detailInfo.orderInfo.orderStatus | async"></span>
+  </header>
+
+  <article class="info-text" *ngFor="let detail of detailAry">
+    <h5>{{detail.title}}</h5>
+    <ul *ngIf="detail.type.indexOf('imgs') < 0">
+      <li *ngFor="let item of detail.itemAry">
+        <span style="color:#919191;width: 140px;display: inline-block;">{{item.label}}</span> <span *ngIf="detailInfo[detail.type]" style="color:#282F38;">{{detailInfo[detail.type][item.value]}}</span>
+      </li>
+    </ul>
+    <ul class="img_content" *ngIf="detail.type.indexOf('imgs') >= 0">
+      <li *ngFor="let item of detail.itemAry">
+        <p *ngIf="detailInfo[detail.type] && detailInfo[detail.type][item.value]">
+          <span>{{item.label}}</span>
+          <img [src]="detailInfo[detail.type][item.value]" [alt]="detailInfo[detail.type][item.value]">
+        </p>
+      </li>
+    </ul>
+  </article>
+</section>

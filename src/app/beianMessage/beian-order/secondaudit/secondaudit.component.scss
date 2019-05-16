@@ -1,0 +1,146 @@
+header {
+  height:82px;
+  background:rgba(245,245,245,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  h3 {
+    font-size:24px;
+    color:rgba(69,75,82,1);
+  }
+  span {
+    color:rgba(76,80,92,1);
+  }
+}
+
+.info-text {
+  padding: 15px;
+  border:1px solid rgba(233,233,233,1);
+  margin-top: 15px;
+  h5 {
+    height:19px;
+    font-size:14px;
+    color:rgba(51,51,51,1);
+    line-height:19px;
+  }
+  ul {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    width: 50%;
+    height:36px;
+    font-size:12px;
+    color:rgba(40,47,56,1);
+    line-height:36px;
+    span {
+      color:rgba(145,145,145,1);
+    }
+  }
+}
+
+.secondaudit-message {
+  width: 100%;
+  overflow: hidden;
+  padding: 0 15px 15px;
+  border: 1px solid #E9E9E9;
+  .secaudit-title {
+    width: 100%;
+    padding: 15px 0;
+    font-size:14px;
+    color:#333;
+    border-bottom: 1px solid #E9E9E9;
+  }
+ .curtain-photo {
+   width: 100%;
+   overflow:hidden;
+   padding: 30px 0;
+   position: relative;
+   .upload-label {
+     float:left;
+     width: 15%;
+     height:150px;
+     line-height:150px;
+   }
+   .remark-label {
+    position: absolute;
+    left: 25%;
+    bottom: 3%;
+    color: #F04134;
+  }
+  .upload-photo {
+    float:left;
+    width: 30%;
+    overflow:hidden;
+  }
+  ::ng-deep .ant-upload.ant-upload-select-picture-card{
+    width:260px;
+    height:150px;
+  }
+  ::ng-deep .ant-upload-list-picture-card .ant-upload-list-item {
+    width: 260px;
+    height: 150px;
+  }
+
+  .upload-exp {
+    width: 55%;
+    overflow:hidden;
+    float:left;
+    .exp-label {
+      float:left;
+      height:150px;
+      line-height: 20px;
+      margin-right: 10px;
+    }
+    .exp-photo {
+      width: 260px;
+      height: 150px;
+      display:inline-block;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  i[nz-icon] {
+    font-size: 32px;
+    color: #999;
+  }
+  .ant-upload-text {
+    margin-top: 8px;
+    color: #666;
+  }
+
+ }
+
+}
+
+.avatar {
+  width: 260px;
+  height: 150px;
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: #999;
+}
+.ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+
+.btn-content {
+  margin-top: 15px;
+  float: right;
+}
+
+.btn-content button {
+  margin-left: 15px;
+}
+
+:host ::ng-deep .ant-modal-body {
+  height: 80px !important;
+}

@@ -1,0 +1,185 @@
+<div  class="full-page">
+  <div class="header"><p class="title">{{title}}</p></div>
+  <div class="clear-both"></div>
+  <div *ngIf="isShow" class="main-body"   [hidden]="isVisible">
+    <!--<div class="reminder">-->
+      <!--<p class="reminder-top"><span>重要提醒：</span>2018年1月1日起，工信部要求备案域名必须完成域名实名认证，未完成实名认证、实名信息与备案信息不一致等会被管局驳回</p>-->
+      <!--<a class="aline" href="">点此查看网站备案域名检验规则</a>-->
+      <!--<p class="reminder-bottom"><span>温馨提示：</span><span>备案信息有效期为45天（自提交当天开始计算），订单超期后自动失效，请您尽快提交并完成备案。为避免影响网站备案及访问，请注意服务器的服务期限及时续费。</span></p>-->
+    <!--</div>-->
+    <hr class="hrline">
+    <div class="reminder-message">
+      <p class="start-beian">请填写信息开始备案</p>
+    </div>
+
+    <div  class="address">
+         <span class="left259">*</span><span class="area">主办单位所属区域</span>
+         <nz-select class="area1" [(ngModel)]="websitesParam.provinceId" (ngModelChange)="selectCity($event)" nzAllowClear >
+            <nz-option
+              *ngFor="let option of optionObj.citysData.provinceList"
+              [nzLabel]="option.name"
+              [nzValue]="option.code">
+            </nz-option>
+          </nz-select>
+        <nz-select class="area1" [(ngModel)]="websitesParam.cityId" nzAllowClear (ngModelChange)="selectCountry($event)">
+            <nz-option
+              *ngFor="let option of citysData.city"
+              [nzLabel]="option.name"
+              [nzValue]="option.code">
+            </nz-option>
+        </nz-select>
+        <nz-select class="area1" [(ngModel)]="websitesParam.countryId" nzAllowClear
+        [nzTitle]="promptMessage.mustprovince" nzPlacement="right" nz-tooltip>
+          <nz-option
+            *ngFor="let option of citysData.country"
+            [nzLabel]="option.name"
+            [nzValue]="option.code">
+          </nz-option>
+        </nz-select>
+         <br>
+    </div>
+
+    <div class="box">
+    <span class="character">*</span><span>主办单位性质</span>
+        <nz-select class="input-w" [(ngModel)]="websitesParam.typeId"
+        (ngModelChange)="selectCertification($event)" nzAllowClear
+        [nzTitle]="promptMessage.dwxz" nzPlacement="right" nz-tooltip>
+        <nz-option *ngFor="let option of optionObj.unitList"
+        [nzLabel]="option.name"
+        [nzValue]="option.code"></nz-option>
+        </nz-select> <br>
+    </div>
+
+    <div class="box">
+    <span class="left259">*</span><span>主办单位证件类型</span>
+        <nz-select class="input-w" [(ngModel)]="websitesParam.certificationId"
+         [disabled]="!websitesParam.typeId"
+         (ngModelChange)= "websitesParam.certificationNum=''"
+         nzAllowClear [nzTitle]="promptMessage.dwzjlx" nzPlacement="right" nz-tooltip>
+            <nz-option *ngFor="let option of optionObj.certifications"
+            [nzLabel]="option.name"
+            [nzValue]="option.code" ></nz-option>
+        </nz-select> <br>
+    </div>
+    <div class="box">
+        <span class="left259">*</span><span>主办单位证件号码</span>
+        <input class="input-w" nz-input placeholder="请输入内容"
+        [disabled]="!(websitesParam.typeId&&websitesParam.certificationId)"
+        (blur)="checkCardId(websitesParam.certificationNum)"
+        [(ngModel)]="websitesParam.certificationNum"
+        [nzTitle]="promptMessage.dwzjhm" nzPlacement="right" nz-tooltip>
+        <br>
+    </div>
+
+    <div class="box">
+       <span class="domain">*</span><span>域名</span><span class="www">www.</span>
+       <input class="input-domain"  nz-input placeholder="请输入域名" [(ngModel)]="websitesParam.domain"
+       [nzTitle]="promptMessage.domain" nzPlacement="right" nz-tooltip>
+    <i nz-icon type="question-circle" theme="outline"></i>
+    </div>
+    <div class="box">
+        <span class="validate">*</span><span>验证码</span>
+        <input class="input-validate"  nz-input maxlength="4"  placeholder="请输入验证码"
+        [(ngModel)]="websitesParam.validateCode"
+        [nzTitle]="promptMessage.accountAuthCode" nzPlacement="right" nz-tooltip>
+        <span class="validatec-img">
+            <span><img [src]="imgUrl" alt=""></span>
+            <i class="anticon anticon-reload reload-icon" (click)="getPictureVerificationCode()"></i>
+        </span>
+    </div>
+    <button nz-button [nzType]="'primary'"  class="show-modal"  (click)="showModal()">
+      <span>下一步</span>
+    </button>
+
+  </div>
+
+  <nz-modal [(nzVisible)]="isVisible"  nzTitle="请选择备案类型" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" (nzSelectChange)="changeTab($event)">
+      <nz-tab nzTitle="首次备案">
+        <p>适用于首次进行网站备案的用户。</p>
+        <p>指主办单位/个人、证件号码及域名均未做过备案。</p>
+        <p>如果您不清楚备案类型可致电：400-603-1123转1进行备案咨询。</p>
+      </nz-tab>
+      <nz-tab nzTitle="新增接入">
+        <p>适用于域名已在其他服务商处做过备案的用户。</p>
+        <p>指用户的该域名已在其他服务商处做过备案，现因使用浪潮云服务器，需将已备案的域名信息新增至浪潮云 。</p>
+        <p>此备案类型需要提供备案密码，若不确定备案密码是否正确，请登录工信部网站按照修改密码的方式进行验证，若密码错误，请进行密码找回。</p>
+        <p>如果您不清楚备案类型可致电：400-603-1123转1进行备案咨询。</p>
+      </nz-tab>
+      <nz-tab nzTitle="新增网站">
+        <p>适用于需在已备案主体下添加网站备案的用户。</p>
+        <p>指主办者已做过备案，已取得主体备案号，现需在该主体下添加新的网站备案。</p>
+        <p>如果您不清楚备案类型可致电：400-603-1123转1进行备案咨询。</p>
+      </nz-tab>
+    </nz-tabset>
+
+  </nz-modal>
+
+  <!-- 取消IP添加页面 -->
+  <!-- <div [hidden]="isShow" class="main-two" >
+    <div class="reminder-message">
+      <p class="beian">您的备案类型为<span class="type-label">{{typeLabel}}</span>,为了更好的给您提供服务，请先验证购买的产品</p>
+    </div>
+
+    <div class="area-zhuban">
+      <p><span class="span-two" >主办单位所属区域：</span><span>{{websitesParam.provinceName}} {{websitesParam.cityName}} {{websitesParam.countryName}}</span></p>
+    </div>
+    <div class="area-two">
+      <p><span class="danwei-type">主办单位性质：</span><span>{{websitesParam.typeName}}</span></p>
+    </div>
+    <div class="area-two" >
+      <p><span  class="span-two">主办单位证件类型：</span><span>{{websitesParam.certificationName}}</span></p>
+    </div>
+    <div class="area-two">
+      <p><span class="span-two" >主办单位证件号码：</span><span>{{websitesParam.certificationNum}}</span></p>
+    </div>
+    <hr>
+    <div class="box">
+      <span class="domain-two">*</span><span>域名</span><span>{{websitesParam.domain}}</span><br>
+    </div>
+    <div class="box">
+      <span class="buyip">*</span><span>购买的实例IP</span>
+      <input class="input-ip"  nz-input placeholder="请输入内容" [(ngModel)]="instanceIp">
+      <nz-tooltip style="margin-left: 5px;" [nzVisible]="!isShow" [nzPlacement]="'right'" [nzTitle]="'请填写域名备案成功后需解析的外网IP地址（我司IP)。如您还未购买我司IP,请前往控制台先购买浪潮云主机与外网弹性ip（Eip）多个IP请用英文分号“;”分开。'" >
+        <i class="anticon anticon-question-circle" nz-tooltip></i>
+      </nz-tooltip>
+    </div>
+    <div class="turn-button-style">
+    <button nz-button [nzType]="'primary'" (click)="addIP();">
+      <span>{{websitesParam.type==3 ? '验证' : '下一步'}}</span>
+    </button>
+    <button nz-button [nzType]="'default'"  (click)="back();" >
+      <span>返回</span>
+    </button>
+  </div>
+  </div> -->
+
+  <div [hidden]="isShow" class="main-three" >
+    <div class="find">
+      <p class="find-password" >
+        ICP备案密码提交后将直接由管局审核验证，如果忘记密码，请通过各地管局网址找回密码。<span style="display: none;" class="pass">如何找回备案密码？</span>
+      </p>
+    </div>
+
+    <div class="box">
+      <span class="span-three">*</span>
+      <span>主体备案号：</span>
+      <input class="input-three"  nz-input [(ngModel)]="subject.subjectRecordNumber"><br>
+    </div>
+    <div class="box">
+      <span class="span-three">*</span>
+      <span>ICP备案密码：</span>
+      <input class="input-three"  nz-input nz-tooltip [nzPlacement]="'right'" [nzTitle]="'您的申请接入资料提交至管局审核，备案密码错误会被管局直接驳回。为了不影响备案进度，请务必填写正确的备案密码。'"
+       [(ngModel)]="subject.subjectIcpPassword">
+    </div>
+    <div class="turn-button-style">
+    <button nz-button [nzType]="'primary'" (click)="vertifySubject();">
+      <span>下一步</span>
+    </button>
+    <button nz-button [nzType]="'default'"  (click)="back();" >
+      <span>返回</span>
+    </button>
+    </div>
+  </div>
+
+</div>

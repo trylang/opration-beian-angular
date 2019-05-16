@@ -1,0 +1,23 @@
+[
+  {
+    "label": "云服务器",
+    "link": "/ecs/vm"
+  },
+  {
+    "label": "云物理主机",
+    "link": "/cps"
+  },
+  {
+    "label": "负载均衡",
+    "link": "/slb"
+  },
+  {
+    "label": "虚拟私有网络",
+    "link": "/vpc"
+  },
+  {
+    "label": "弹性伸缩",
+    "link": "/eip"
+  }
+]
+

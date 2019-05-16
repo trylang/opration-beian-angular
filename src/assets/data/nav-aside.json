@@ -1,0 +1,21 @@
+{
+  "label": "备案系统",
+  "icon": "iconfont icon-cedaohang-beianguanliicp",
+  "sideLists": [
+    {
+      "label": "我的备案",
+      "link": "list",
+      "icon": "iconfont icon-wodebeianrecord"
+    },
+    {
+      "label": "备案订单",
+      "link": "order",
+      "icon": "iconfont icon-beiandingdanorder"
+    },
+    {
+      "label": "备案专区",
+      "link": "home",
+      "icon": "iconfont icon-beianzhuanqurecordarea"
+    }
+  ]
+}

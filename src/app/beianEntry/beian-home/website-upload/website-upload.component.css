@@ -1,0 +1,264 @@
+/*full-page*/
+.full-page {
+  width: 100%;
+  height: calc(100% - 50px);
+  position: fixed;
+  left: 0;
+  top: 50px;
+  overflow-y: auto;
+  background: #f5f5f5;
+  z-index: 1000;
+}
+
+.loyoutEdit_top{
+  overflow: hidden;
+  height: 180px;
+  background-color: rgb(68, 75, 83);
+}
+/*.loyoutEdit_foot{*/
+/*position: absolute;*/
+/*bottom: -560px;*/
+/*left: 0;*/
+/*color: #fff;*/
+/*font-size: 12px;*/
+/*width:100%;*/
+/*height: 50px;*/
+/*overflow: hidden;*/
+/*background-color: #282F38;*/
+/*text-align: center;*/
+/*line-height: 50px;*/
+/*}*/
+
+.process{
+  width:1000px;
+  /*min-height:1350px;*/
+  background:rgba(255,255,255,1);
+  position: absolute;
+  left: 39%;
+  top: 100px;
+  margin-left: -350px;
+}
+
+
+.upload-title{
+  margin-top: 44px;
+}
+.upload-title > p{
+  font-size:18px;
+  font-family:MicrosoftYaHei;
+  color:rgba(255,255,255,1);
+  line-height:24px;
+  margin-left: 24%;
+  margin-top: 4%;
+}
+
+.per_examples>div{
+  width: 265px;
+  height: 160px;
+  padding: 3px;
+  background-color: #fff;
+  border: 1px solid #D9D9D9;
+  margin-left: 20px;
+  margin-top: 17px;
+}
+.per_examples>div>img{
+  max-width: 260px;
+  height: 150px;
+}
+
+
+i[nz-icon] {
+  font-size: 32px;
+  color: #999;
+}
+.ant-upload-text {
+  margin-top: 8px;
+  color: #666;
+}
+
+::ng-deep .ant-upload-list-picture-card .ant-upload-list-item {
+  width: 260px;
+  height: 150px;
+}
+
+::ng-deep .ant-upload.ant-upload-select-picture-card > .ant-upload {
+  width: 260px;
+  height: 150px;
+}
+
+.subject-font-style{
+  text-align: left;
+  height: 50px;
+  font-size: 14px;
+  font-family: MicrosoftYaHeiUI;
+  color: rgba(51,51,51,1);
+  margin-left: 50px;
+}
+.title-style{
+  text-align: center;
+  border:1px solid rgba(240,240,240,1);
+  margin-top: 10px;
+  background:rgba(252,252,252,1);
+  height:50px;
+  border:1px solid rgba(240,240,240,1);
+}
+
+.note-title {
+  color: #93D5EC;
+}
+
+
+
+
+.audit-header {
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+  padding: 5px;
+}
+.btn-back {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+.btn-reviewed {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  cursor: pointer;
+}
+.vertical-line {
+  display: inline-block;
+  position: relative;
+  height: 16px;
+  width: 3px;
+  top: 50%;
+  background-color: #2099e0;
+  margin: 0px 5px 0 0px;
+  vertical-align: middle;
+}
+.website-card {
+  margin: 15px 0;
+  background-color: #fff;
+  border: 1px solid #fff;
+  padding: 15px 5px;
+  /*-moz-box-shadow:2px 2px 5px #ccc;*/
+  /*-webkit-box-shadow:2px 2px 5px #ccc;*/
+  /*box-shadow:2px 2px 5px #ccc;*/
+}
+.card-title {
+  display: inline-block;
+}
+.info-row {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.row-title {
+  display: inline-block;
+  vertical-align: top;
+}
+.p-label {
+  display: inline-block;
+  width: 150px;
+}
+.red {
+  color: red;
+}
+.website-title {
+  display: inline-block;
+}
+/*域名块*/
+.domain-span {
+  display: inline-block;
+}
+.domain-span input {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.input-width {
+  width:200px;
+}
+.select-width {
+  width: 200px;
+}
+.edit-span {
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: top;
+}
+.icon-margin {
+  display: inline-block;
+  margin: auto 10px;
+}
+.textarea-note {
+  display: inline-block;
+  width:460px;
+}
+/*checkbox */
+.service-div {
+  display: inline-block;
+  /*width: 600px;*/
+  width: 60%;
+}
+::ng-deep .ant-checkbox-wrapper {
+  min-width: 150px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+::ng-deep .ant-checkbox-wrapper + .ant-checkbox-wrapper {
+  margin-left: 0;
+}
+/*上传*/
+.upload-container {
+  display: flex;
+  align-items: center;
+  /*margin-bottom: 24px;*/
+}
+.avatar-uploader {
+  width:229px;
+  height:138px;
+  display: inline-block;
+  margin-left: 60px;
+}
+.margin_left_1 {
+  margin-left: 1%;
+}
+.msgVal {
+  width: 200px;
+  margin-left: 2%;
+}
+::ng-deep .ant-upload-list-picture-card .ant-upload-list-item {
+  width:220px;
+  height:138px;
+}
+/*.font-size-18{*/
+/*font-size: 18px;*/
+/*cursor: pointer;*/
+/*}*/
+.icon-cancel {
+  font-size: 18px;
+  cursor: pointer;
+}
+.icon-success {
+  font-size: 18px;
+  color: #6DCC50;
+  cursor: pointer;
+}
+.icon-disabled {
+  font-size: 18px;
+  color: #aaaaaa;
+}
+.error-tip {
+  padding-left: 150px;
+  margin-top: 5px;
+}
+.left-label-style {
+  width: 150px;
+}
+
+:host ::ng-deep .ant-modal-body {
+  height: 80px !important;
+}
+.verification-note-style {
+  text-indent: 2em;
+}

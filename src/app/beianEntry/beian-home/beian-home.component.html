@@ -1,0 +1,206 @@
+<div class="full-page">
+  <div class="titleMessage">
+    <div style="width:50%;">
+      <p class="titleMessageOne">备案中心</p>
+      <p class="titleMessageTwo">浪潮云免费为您提供专业，快捷的备案服务</p>
+    </div>
+    <div style="width:50%;"></div>
+  </div>
+  <div class="process">
+    <p>备案流程</p>
+  </div>
+  <div class="guide">
+    <a>备案流程指导</a>
+    <div class="guidePicture">
+      <div class="options">
+        <img src="{{imgLoadUrl}}/beian/assets/images/beian-process-icon/beian-system-enter.png">
+        <P class="options-title">进入备案系统</P>
+        <div class="ciclenumber">1</div>
+      </div>
+      <div class="options">
+        <img src="{{imgLoadUrl}}/beian/assets/images/beian-process-icon/first-audit-submit.png">
+        <P class="options-title">填写信息提交初审</P>
+        <div class="ciclenumber">2</div>
+      </div>
+      <div class="options">
+        <img src="{{imgLoadUrl}}/beian/assets/images/beian-process-icon/beian-reivew-submit.png">
+        <P class="options-title">填写复审信息提交复审</P>
+        <div class="ciclenumber">3</div>
+      </div>
+      <div class="options">
+        <img src="{{imgLoadUrl}}/beian/assets/images/beian-process-icon/management-audit.png">
+        <P class="options-title">管局审核</P>
+        <div class="ciclenumber">4</div>
+      </div>
+      <div class="options">
+        <img src="{{imgLoadUrl}}/beian/assets/images/beian-process-icon/beian-success.png">
+        <P class="options-title">备案成功</P>
+        <div class="ciclenumber">5</div>
+      </div>
+      <div class="linePosition">
+        <span>1-2个工作日</span><span>约10-20个工作日</span>
+        <hr class="line">
+      </div>
+    </div>
+  </div>
+  <div class="boxBtn">
+    <button class="btn" nz-button nzType="primary" (click)="startBeian()">开始备案</button>
+  </div>
+  <div class="beianTitle">
+    各省备案规则
+  </div>
+  <div class="beianDetail">
+    <div class="beianDetailLeft">
+      <div>
+        <span class="span1">*</span><span class="span2">请选择下图中您备案相应的省份，查看备案具体规则</span>
+      </div>
+      <div class="map">
+        <div id="main" class="chart"></div>
+      </div>
+    </div>
+    <div class="beianDetailRight">
+      <p class="area">{{dataInfo.name}}地区备案规则</p>
+      <div class="userBtn">
+        <button nz-button [nzType]= "userType =='enterprise'? 'primary':'default'" (click) = "changeUserType('enterprise')">企业用户</button>
+        <button nz-button [nzType]= "userType =='private'? 'primary':'default'" (click) = "changeUserType('private')">个人用户</button>
+      </div>
+      <div *ngIf = 'userType === "enterprise"' class="ruleDetail">
+        <p><b>备案重要规则</b></p>
+           <ol type="1">
+             <li *ngFor="let item of dataInfo.importantRules; let i = index">{{i+1}}.{{item}}</li>
+           </ol>
+        <p style="margin-top:10px;"><b>备案所需资料</b></p>
+          <ol>
+           <li *ngFor="let item of dataInfo.requiredInformation; let i = index">{{i+1}}.{{item}}</li>
+          </ol>
+        <p style="margin-top:10px;"><b>变更备案规则</b></p>
+        <ol>
+          <li *ngFor="let data of dataInfo.changeRules; let i = index">{{i+1}}.{{ data }}</li>
+        </ol>
+        <p style="margin-top:10px;"><b>接入备案规则</b></p>
+        <ol>
+          <li *ngFor="let data of dataInfo.AccessRules; let i = index">{{i+1}}.{{ data }}</li>
+        </ol>
+
+      </div>
+      <div *ngIf = 'userType === "private"' class="ruleDetail">
+        <p><b>备案重要规则</b></p>
+           <ol type="1">
+             <li *ngFor="let item of dataInfo.privateImportantRules; let i = index">{{i+1}}.{{item}}</li>
+           </ol>
+        <p style="margin-top:10px;"><b>备案所需资料</b></p>
+          <ol>
+           <li *ngFor="let item of dataInfo.privateRequiredInformation; let i = index">{{i+1}}.{{item}}</li>
+          </ol>
+        <p style="margin-top:10px;"><b>变更备案规则</b></p>
+        <ol>
+          <li *ngFor="let data of dataInfo.privateChangeRules; let i = index">{{i+1}}.{{ data }}</li>
+        </ol>
+        <p style="margin-top:10px;"><b>接入备案规则</b></p>
+        <ol>
+          <li *ngFor="let data of dataInfo.privateAccessRules; let i = index">{{i+1}}.{{ data }}</li>
+        </ol>
+
+      </div>
+    </div>
+  </div>
+  <!--<div class="beianHelp">-->
+    <!--备案帮助-->
+  <!--</div>-->
+  <!--<div class="helpDetail">-->
+    <!--<div>-->
+      <!--<p>备案基本知识</p>-->
+      <!--<ul>-->
+        <!--<li>-如何进行备案</li>-->
+        <!--<li>-基本名词解释</li>-->
+        <!--<li>-备案需要准备什么</li>-->
+        <!--<li>-备案是否需要先行购买服务器</li>-->
+        <!--<li>-备案审核要用多长时间</li>-->
+        <!--<li>更多>></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<p>填写备案信息</p>-->
+      <!--<ul>-->
+        <!--<li>-如何进行备案</li>-->
+        <!--<li>-基本名词解释</li>-->
+        <!--<li>-备案需要准备什么</li>-->
+        <!--<li>-备案是否需要先行购买服务器</li>-->
+        <!--<li>-备案审核要用多长时间</li>-->
+        <!--<li>更多>></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<p>上传备案资料</p>-->
+      <!--<ul>-->
+        <!--<li>-如何进行备案</li>-->
+        <!--<li>-基本名词解释</li>-->
+        <!--<li>-备案需要准备什么</li>-->
+        <!--<li>-备案是否需要先行购买服务器</li>-->
+        <!--<li>-备案审核要用多长时间</li>-->
+        <!--<li>更多>></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<p>备案成功</p>-->
+      <!--<ul>-->
+        <!--<li>-如何进行备案</li>-->
+        <!--<li>-基本名词解释</li>-->
+        <!--<li>-备案需要准备什么</li>-->
+        <!--<li>-备案是否需要先行购买服务器</li>-->
+        <!--<li>-备案审核要用多长时间</li>-->
+        <!--<li>更多>></li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="footer">-->
+    <!--<ul class="footer-link-left">-->
+      <!--<li>客户服务</li>-->
+      <!--<li>QQ：1506735600(售前)</li>-->
+      <!--<li>QQ：1506735600(售后)</li>-->
+      <!--<li>售前：400-607-6657</li>-->
+      <!--<li>售后：400-619-2176</li>-->
+      <!--<li>Email：cloud@inspur.com</li>-->
+    <!--</ul>-->
+    <!--<ul class="footer-link-right">-->
+      <!--<li>产品服务</li>-->
+      <!--<li><a href="javascript:;">云计算</a></li>-->
+      <!--<li><a href="javascript:;">网络</a></li>-->
+      <!--<li><a href="javascript:;">存储和容灾</a></li>-->
+      <!--<li><a href="javascript:;">IDC服务</a></li>-->
+      <!--<li><a href="javascript:;">负载均衡</a></li>-->
+    <!--</ul>-->
+    <!--<ul class="footer-link-right">-->
+      <!--<li>客户案例</li>-->
+      <!--<li><a href="javascript:;">政府政务</a></li>-->
+      <!--<li><a href="javascript:;">行业部委</a></li>-->
+      <!--<li><a href="javascript:;">大型企业</a></li>-->
+    <!--</ul>-->
+    <!--<ul class="footer-link-right">-->
+      <!--<li>服务社区</li>-->
+      <!--<li><a href="javascript:;">产品白皮书</a></li>-->
+      <!--<li><a href="javascript:;">购买手册</a></li>-->
+      <!--<li><a href="javascript:;">备案手册</a></li>-->
+      <!--<li><a href="javascript:;">API文档</a></li>-->
+      <!--<li><a href="javascript:;">客户服务</a></li>-->
+    <!--</ul>-->
+    <!--<ul class="footer-link-right">-->
+      <!--<li>关于我们</li>-->
+      <!--<li><a href="javascript:;">浪潮云简介</a></li>-->
+      <!--<li><a href="javascript:;">浪潮云大事记</a></li>-->
+      <!--<li><a href="javascript:;">加入我们</a></li>-->
+      <!--<li><a href="javascript:;">联系我们</a></li>-->
+    <!--</ul>-->
+    <!--<ul class="footer-link-right">-->
+      <!--<li>友情链接</li>-->
+      <!--<li><a href="javascript:;">天元数据网</a></li>-->
+      <!--<li><a href="javascript:;">爱城市网</a></li>-->
+      <!--<li><a href="javascript:;">浪潮云会计</a></li>-->
+    <!--</ul>-->
+    <!--<ul class="footer-link-right">-->
+      <!--<li>关注浪潮云</li>-->
+      <!--<li>浪潮云微信</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+  <p class="footer-bottom">©1996-2017 INSPUR Co., Ltd. 鲁IC备05019369号</p>
+</div>

@@ -1,0 +1,138 @@
+<div class="full-page">
+  <div class="loyoutEdit_top">
+    <div class="upload-title">
+      <p>网站负责人拍照核验</p>
+    </div>
+  </div>
+  <div class="loyoutEdit_bot">
+  </div>
+  <div class="process">
+    <div>
+      <i   class="anticon anticon-check-circle-o icon"></i>
+      <p class="note-style">您已成功提交初审备案信息，我们将在<span style="color:rgba(54,179,223,1);">1-2个工作日</span>内完成初审，请耐心等待。</p>
+      <p class="note-bottom-style">提示：您的备案信息还有网站负责人幕布照片尚未上传，请您及时申请幕布，拍摄幕布照片，以加快备案效率。</p>
+    </div>
+    <!--<div class="buzhou-style">
+      <div><span>1</span>提交初审信息，进行初审</div>
+      <div><span>2</span>拍照上传</div>
+      <div><span>3</span>提交管局</div>
+      <div><span>4</span>备案成功</div>
+    </div>-->
+    <div class="buzhou-style">
+      <nz-tabset [nzShowPagination]="false">
+        <nz-tab nzTitle="1.提交初审信息，进行初审"></nz-tab>
+        <nz-tab nzTitle="2.拍照上传"></nz-tab>
+        <nz-tab nzTitle="3.提交管局"></nz-tab>
+        <nz-tab nzTitle="4.备案成功"></nz-tab>
+      </nz-tabset>
+    </div>
+    <div style="margin-top: 60px;">
+      <!--左边-->
+      <div style="float: left;margin-top: 5px;" class="left-message-style">
+        <div>
+          <p style="margin-left: 250px;">我没有幕布：</p>
+        </div>
+        <div>
+          <p style="margin-left: 250px;margin-top: 103px;">我已有幕布：</p>
+        </div>
+      </div>
+      <!--右边-->
+      <div class="right-message-style" style="float: left;margin-left: 5%;">
+        <div>
+          <p>第一步：填写幕布邮寄地址。<button (click)="addressFunction()" nz-button nzType="primary">点击填写邮寄地址</button></p>
+        </div>
+        <div>
+          <p>第二步：购买拍照专用幕布。</p>
+        </div>
+        <div>
+          <p>第三步：收到幕布后按照拍照说明，拍摄网站负责人照片。</p>
+        </div>
+        <div>
+          <p>第四步：初审通过后，将拍摄好的幕布上传至系统。</p>
+        </div>
+        <div>
+          <p>第一步：收到幕布后按照拍照说明，拍摄网站负责人照片。</p>
+        </div>
+        <div>
+          <p>第二步：初审通过后，将拍摄好的幕布上传至系统。</p>
+        </div>
+        <div class="bottom-button-style">
+          <button nz-button nzType="primary" (click)="returnOrder()">返回我的订单</button>
+        </div>
+      </div>
+
+    </div>
+    <nz-modal [(nzVisible)]="curtainShow" nzTitle="请填写收货人信息" (nzOnCancel)="cancelCurtainMessage()" (nzOnOk)="submitCurtainMessage()" nzWidth="700px">
+      <div style="clear: both;">
+        <div style="float: left;">
+          <div style="margin-bottom: 32px;">
+            <span class="left-text-style">备案订单号：</span><span></span>
+          </div>
+          <div style="margin-bottom: 127px;">
+            <span style="color:#f00;">*</span><span class="left-text-style">收货人居住区域</span>
+          </div>
+          <div style="margin-bottom: 32px;">
+            <span style="color:#f00;">*</span>
+            <span class="left-text-style">收货人姓名</span>
+          </div>
+          <div>
+            <span style="color:#f00;">*</span><span class="left-text-style">收货手机号</span>
+          </div>
+        </div>
+
+        <div style="float: left;" class="input-style">
+          <div style="margin-bottom: -7px;">
+            <span>{{orderId}}</span>
+          </div>
+          <!--收货人居住区域-->
+          <div>
+            <div class="box" style="margin-top:40px;">
+              <nz-select style="width: 120px;" [(ngModel)]="curtainReturnParams.provinceCode" (ngModelChange)="selectCity($event)" nzAllowClear >
+                <nz-option
+                  *ngFor="let option of optionObj.citysData.provinceList"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.code">
+                </nz-option>
+              </nz-select>
+              <nz-select style="width: 120px;"  [(ngModel)]="curtainReturnParams.cityCode" nzAllowClear (ngModelChange)="selectCountry($event)">
+                <nz-option
+                  *ngFor="let option of citysData.city"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.code">
+                </nz-option>
+              </nz-select>
+              <nz-select style="width: 120px;" [(ngModel)]="curtainReturnParams.countryCode" nzAllowClear>
+                <nz-option
+                  *ngFor="let option of citysData.country"
+                  [nzLabel]="option.name"
+                  [nzValue]="option.code">
+                </nz-option>
+              </nz-select>
+              <br>
+            </div>
+          </div>
+          <div>
+            <textarea  [(ngModel)]="curtainReturnParams.address" (blur)="addressDetailVerification()" nz-input [nzAutosize]="{ minRows: 3, maxRows: 3 }" placeholder="请将地址补充完整，具体到门牌号！"></textarea>
+          </div>
+          <!--收货人姓名-->
+          <div>
+            <input [(ngModel)]="curtainReturnParams.receivedName" (blur)="nameVerification()" nz-input type="text" placeholder="请填写真实姓名">
+          </div>
+
+          <!--收获手机号-->
+          <div>
+            <input (blur)="phoneVerification()" [(ngModel)]="curtainReturnParams.receivePhone" nz-input type="text" placeholder="请填写真实手机号">
+          </div>
+          <div>
+            <span class="note-message-style">收到申请后，我们会第一时间邮寄幕布，邮寄信息会以邮件和站内信的形同通知。</span>
+          </div>
+        </div>
+      </div>
+    </nz-modal>
+  </div>
+</div>
+
+
+
+
+

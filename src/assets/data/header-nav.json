@@ -1,0 +1,67 @@
+[
+  {
+    "label": "计算",
+    "menus": [
+      {
+        "label": "云服务器 ECS",
+        "link": "/ecs/vm"
+      },
+      {
+        "label": "云物理主机 CPS",
+        "link": "/cps"
+      }
+    ]
+  },
+  {
+    "label": "网络",
+    "menus": [
+
+      {
+        "label": "虚拟私有网络 VPC",
+        "link": "/vpc"
+      },
+      {
+        "label": "子网 SUBNET",
+        "link": "/subnet"
+      },
+      {
+        "label": "路由表 ROUTE",
+        "link": "/routers"
+      },
+      {
+        "label": "安全组 SG",
+        "link": "/app-security-groups"
+      },
+      {
+        "label": "弹性公网IP EIP",
+        "link": "/eip"
+      },
+      {
+        "label": "负载均衡 SLB",
+        "link": "/slb"
+      }
+    ]
+  },
+  {
+    "label": "存储",
+    "menus": [
+      {
+        "label": "云硬盘 EBS",
+        "link": "/ebs/ebslist"
+      },
+      {
+        "label": "对象存储 OSS",
+        "link": "/inobj/overview"
+      }
+    ]
+  },
+  {
+    "label": "云数据库",
+    "menus": [
+      {
+        "label": "云数据库 InDB",
+        "link": "/indb"
+      }
+    ]
+  }
+]

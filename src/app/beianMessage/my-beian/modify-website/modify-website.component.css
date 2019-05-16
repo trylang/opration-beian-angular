@@ -1,0 +1,98 @@
+.page-title {
+  min-height: 48px;
+  margin: -20px -20px 20px -20px;
+  padding-top: 25px;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.common-title {
+  font-size:14px;
+  font-family:MicrosoftYaHeiUI;
+  color:rgba(51,51,51,1);
+  line-height:19px;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+.top-common-style{
+  height: 650px;
+  width: 100%;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(233,233,233,1);
+  clear: both;
+}
+.bottom-common-style{
+  height: 345px;
+  width: 100%;
+  background:rgba(255,255,255,1);
+  border:1px solid rgba(233,233,233,1);
+  clear: both;
+  margin-top: 15px;
+}
+
+.bottom-sponsor-style {
+  margin-top: 15px;
+  clear: both;
+}
+.bottom-sponsor-style>button{
+  float: right;
+  margin-left: 10px;
+}
+
+.top-left-style {
+  float: left;
+  width: 58%;
+}
+.top-left-style>div {
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+
+.top-right-style {
+  float: right;
+  width: 42%;
+}
+.top-right-style>div {
+  margin-top: 15px;
+}
+
+.bottom-left-style {
+  float: left;
+  width: 50%;
+}
+.bottom-left-style>div {
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.bottom-right-style {
+  float: right;
+  width: 50%;
+}
+.bottom-right-style>div {
+  margin-top: 15px;
+}
+
+:host ::ng-deep .ant-input {
+  width: 40%;
+}
+.domain-icon {
+  cursor: pointer;
+  margin-left: 20px;
+}
+.input-box {
+  margin-left: 15px;
+  display: inline-block;
+}
+.label-style>span {
+  width: 150px;
+  display: inline-block;
+}
+.card-type-style {
+  width: 40%;
+}
+.left-label-style>span {
+  display: inline-block;
+  width: 100px;
+}

@@ -1,0 +1,11 @@
+{
+  "/message": {
+    "target": "http://117.73.2.105:8084",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "/message/": "/"
+    }
+  }
+}

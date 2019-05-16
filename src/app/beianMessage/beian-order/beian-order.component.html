@@ -1,0 +1,71 @@
+<section class="full-page">
+  <h4 class="h4_title">备案订单</h4>
+  <header>
+    <div class="selction-container">
+      <p class="section-item">
+        <span class="section-label">备案类型：</span>
+        <nz-select style="width: 180px;" [(ngModel)]="paramObj.typeId" (ngModelChange)="selectStatus($event)" >
+          <nz-option *ngFor="let type of optionObj.types" [nzValue]="type.id" [nzLabel]="type.type"></nz-option>
+        </nz-select>
+      </p>
+      <p class="section-item">
+        <span class="section-label">当前状态：</span>
+        <nz-select style="width: 180px;" [(ngModel)]="paramObj.statusId" >
+          <nz-option *ngFor="let status of optionObj.status" [nzValue]="status.statusId" [nzLabel]="status.orderSatus"></nz-option>
+        </nz-select>
+      </p>
+      <div> 
+        <button nz-button nzType="primary" (click)="searchOrder();">查询</button> 
+      </div>
+    </div>
+    <div class="search-container">
+      <nz-input-group class="input" [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input [(ngModel)]="paramObj.orderId" placeholder="请输入备案订单号">
+        <label class="warn-tip" *ngIf="orderErrorTipShow">订单号只能为数字！</label>
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+          <i class="anticon anticon-search" style="cursor: pointer;" (click)="searchOrder();"></i>
+      </ng-template>
+      <button nz-button nzType="default" class="btn_beian_order" (click)="searchOrder('reload');"><i class="anticon anticon-reload"></i></button>    </div>
+  </header>
+  <article class="article_order">
+    <nz-table #basicTable [nzFrontPagination]="false" [nzPageSize]="10" [nzData]="results.data" [nzTotal]="results.iTotalRecords"
+    (nzPageIndexChange)="pageIndexChange($event)">
+      <thead>
+        <tr>
+          <th>备案订单号</th>
+          <th nzWidth="180px">关联域名</th>
+          <th>备案类型</th>
+          <th>备案主体</th>
+          <th>最近更新时间</th>
+          <th>当前状态</th>
+          <th>下一步操作</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.id}}</td>
+          <td>{{data.domain}}</td>
+          <td>{{data.type}}</td>
+          <td>{{data.sponsorName}}</td>
+          <td>{{data.updatedTime}}</td>
+          <td>
+            <a [routerLink]="['/order/status/' + data.id]" [queryParams]="{type: data.typeId, statusId: data.statusId, orderId: data.id, status: data.orderStatus}" [innerHtml]=" data.statusId | status: 'orderstatus': data.orderStatus | async"></a>
+          </td>
+          <td>
+            <a *ngIf="data.nextLink" [routerLink]="[data.nextLink]" [queryParams]="{isEdit: true, type: data.typeId, mark: data.typeId, orderId: data.id, sponsorId: data.sponsorId}">{{data.nextLabel}}</a>
+          </td>
+          <td>
+            <a style="margin-right: 10px;" routerLink="detail/{{data.id}}">查看详情</a>
+
+            <a *ngIf="data.statusId !=='approvalsuccess'" (click)="showModal(data.id)">撤销备案</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </article>
+  <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <p>确认撤销备案吗？</p>
+  </nz-modal>
+</section>

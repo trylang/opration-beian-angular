@@ -1,0 +1,132 @@
+<div>
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="../../"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>网站详细信息</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <!--单位信息-->
+  <div  class="employer-common-style">
+    <div class="common-title">
+      <p>网站信息</p>
+    </div>
+    <div>
+      <div class="organizer-style">
+        <div>
+          <span class="left-label-style">网站名称：</span>
+          <span>{{websiteData.websiteName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">已验证域名：</span>
+          <span>{{domainData}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">网站首页URL：</span>
+          <span>{{websiteData.homeUrl}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">网站服务内容：</span>
+          <span>{{websiteData.serviceContentName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">网站语言选择：</span>
+          <span>{{websiteData.languageName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">前置或专项审批内容：</span>
+          <span>{{websiteData.specialApprovalName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">备注：</span>
+          <span>{{websiteData.note}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">网站IP地址：</span>
+          <span>{{websiteData.instanceIp}}</span>
+        </div>
+      </div>
+      <div class="organizer-style organizer-right">
+        <div>
+          <span class="left-label-style">负责人姓名：</span>
+          <span>{{websiteData.headerName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">负责人证件类型：</span>
+          <span>{{websiteData.headerTypeName}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">负责人证件号码：</span>
+          <span>{{websiteData.headerNum}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">联系方式1（手机号）：</span>
+          <span>{{websiteData.telephone1}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">联系方式2（座机）：</span>
+          <span>{{websiteData.telephone2}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">应急联系方式（手机号）：</span>
+          <span>{{websiteData.emergencyPhone}}</span>
+        </div>
+        <div>
+          <span class="left-label-style">电子邮件地址：</span>
+          <span>{{websiteData.email}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--备案材料-->
+  <div>
+    <div class="img-common-style">
+      <div>
+        <p class="common-title">备案材料</p>
+      </div>
+      <div>
+        <div *ngFor="let item of websitesData">
+          <div class="common-div">
+            <div class="website-photo-style">
+              <div *ngIf="item.fileAttribute2 == 'original' && item.fileAttribute.substr(0,17) !='domainCertificate' && item.fileAttribute.substr(0,9)!='otherData'">
+                <div  class="photo-title-style">{{dataObj[item.fileAttribute]}}</div>
+                <div *ngIf="item.fileAttribute2 == 'original'" class="other-photo-style">
+                  <a (click)="previewFn(item.fuleUrl)">
+                    <img class="img_style" src="{{item.fuleUrl}}">
+                  </a>
+                </div>
+              </div>
+
+              <div *ngIf="item.fileAttribute2 == 'original' && item.fileAttribute.substr(0,17)=='domainCertificate'">
+                <div class="photo-title-style">域名证书：</div>
+                <div *ngIf="item.fileAttribute2 == 'original'" class="other-photo-style">
+                  <a (click)="previewFn(item.fuleUrl)">
+                    <img class="img_style" src="{{item.fuleUrl}}">
+                  </a>
+                </div>
+              </div>
+
+              <div *ngIf="item.fileAttribute2 == 'original' && item.fileAttribute.substr(0,9)=='otherData'">
+                <div class="photo-title-style">其他资料：</div>
+                <div *ngIf="item.fileAttribute2 == 'original'" class="other-photo-style">
+                  <a (click)="previewFn(item.fuleUrl)">
+                    <img class="img_style" src="{{item.fuleUrl}}">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- 图片预览 -->
+<nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+  <ng-template #modalContent>
+    <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+  </ng-template>
+</nz-modal>

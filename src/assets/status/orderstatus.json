@@ -1,0 +1,82 @@
+[ {
+    "status": "add",
+    "label": "未提交初审",
+    "color": "blue"
+  },
+  {
+    "status": "check",
+    "label": "未提交初审",
+    "color": "blue"
+  },
+  {
+    "status": "upload",
+    "label": "未提交初审",
+    "color": "blue"
+  },
+  {
+    "status": "trail",
+    "label": "初审中",
+    "color": "yellow"
+  },
+  {
+    "status": "trailfail",
+    "label": "初审驳回",
+    "color": "red"
+  },
+  {
+    "status": "trailsuccess",
+    "label": "初审通过",
+    "color": "green"
+  },
+  {
+    "status": "review",
+    "label": "复审中",
+    "color": "yellow"
+  },
+  {
+    "status": "reviewfail",
+    "label": "复审驳回",
+    "color": "red"
+  },
+  {
+    "status": "reviewsuccess",
+    "label": "复审通过",
+    "color": "green"
+  },
+  {
+    "status": "review",
+    "label": "管局审核中",
+    "color": "yellow"
+  },
+  {
+    "status": "approvalsucces",
+    "label": "管局审核通过",
+    "color": "green"
+  },
+
+  {
+    "status": "review",
+    "label": "注销(取消)中",
+    "color": "yellow"
+  },
+  {
+    "status": "cancelapproval",
+    "label": "注销(取消)管局审核中",
+    "color": "yellow"
+  },
+  {
+    "status": "cancelfail",
+    "label": "注销(取消)失败",
+    "color": "red"
+  },
+  {
+    "status": "cancelsuccess",
+    "label": " 注销(取消)成功",
+    "color": "green"
+  },
+  {
+    "status": "approvalsuccess",
+    "label": "备案通过",
+    "color": "green"
+  }
+]

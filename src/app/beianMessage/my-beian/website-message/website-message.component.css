@@ -1,0 +1,23 @@
+.page-title {
+  min-height: 48px;
+  margin: -20px -20px 20px -20px;
+  padding-top: 25px;
+  padding-left: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9d9d9;
+}
+::ng-deep .website_table th{
+  border-right: 1px solid #d3dbdf;
+  border-bottom: none !important;
+  background-color: #F0F0F0 !important;
+}
+::ng-deep .website_table th:last-child{
+  border-right: none;
+}
+
+.websiteChangeStyle {
+  display: inline-block;
+  cursor: pointer;
+  color:#36B3DF;
+  margin-right: 5px;
+}

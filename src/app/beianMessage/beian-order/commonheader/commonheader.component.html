@@ -1,0 +1,12 @@
+<section class="common-header">
+  <header>
+    <nz-steps [nzCurrent]="current" nzSize="small">
+      <nz-step *ngFor="let step of steps; index as i" [nzTitle]="step.label" [nzStatus]="getStatus(i)"></nz-step>
+    </nz-steps>
+  </header>
+  <body>
+    <h5>{{statusInfo.title}}</h5>
+    <span>您的信息填写有误，请按照提示重新填写，并提交审核。</span>
+    <p>{{statusInfo.message}}</p>
+  </body>
+</section>

@@ -1,0 +1,22 @@
+
+{
+  "api_protocol": "https://",
+  "domain": "cloud.inspur.com",
+  "defaultRegion": "cn-north-3",
+
+  "redirect_uri": "https://bss.cloud.inspur.com/beian/",
+  "authUrl": "https://auth1.cloud.inspur.com/auth",
+  "authRealm": "picp",
+  "authClientId": "console",
+
+  "websocketServer": "wss://service.cloud.inspur.com/console/websocket/v1/servers",
+  "marketUrl": "https://cloud.inspur.com/market/",
+  "productDocument": "https://console1.cloud.inspur.com/document/",
+  "filingBook":"https://cloud.inspur.com/docs.docbasc.dhtml",
+  "webDomain":"https://console1.cloud.inspur.com",
+
+  "serviceAPI": "https://service.cloud.inspur.com",
+  "bssFront":"https://bss.cloud.inspur.com",
+  "bssAPI":"https://bssapi.cloud.inspur.com/operation"
+}
+

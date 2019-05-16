@@ -1,0 +1,20 @@
+{
+  "api_protocol": "http://",
+  "domain": "10.110.25.123.xip.io",
+  "defaultRegion": "cn-north-3",
+
+  "redirect_uri": "http://bss.inspurtest.com:9080/beian/",
+  "authUrl": "https://auth.inspurtest.com/auth",
+  "authRealm": "picp",
+  "authClientId": "console",
+
+  "websocketServer": "ws://service.10.110.25.123.xip.io/console/websocket/v1/servers",
+  "marketUrl": "http://cloud.inspur.com/market/",
+  "productDocument": "http://console.inspurcloud.cn/document/",
+  "filingBook":"https://cloud.inspur.com/docs.docbasc.dhtml",
+  "webDomain": "http://console.inspurtest.com",
+
+  "bssFront":"http://bss.inspurtest.com:9080",
+  "bssAPI":"http://bssapi.inspurtest.com:9080/operation",
+  "serviceAPI": "http://service.inspurtest.com"
+}

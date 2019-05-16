@@ -1,0 +1,67 @@
+<div class="full-page">
+  <div class="loyoutEdit_top">
+    <div class="upload-title">
+      <p>复审信息填写</p>
+    </div>
+  </div>
+  <div class="loyoutEdit_bot">
+  </div>
+  <!--<div class="loyoutEdit_foot">-->
+  <!--底部样式待调整-->
+  <!--</div>-->
+  <!--主体-->
+  <div class="process">
+    <!--主办单位负责人-->
+    <div style="width: 100%;">
+      <div class="title-style">
+        <span style="display: inline-block;margin-top: 16px;">请上传请上传网站负责人幕布照片：：</span>
+        <span class="note-title">(还没有幕布？<a (click)="curtainJumpFunction()">点击申请</a>)</span>
+      </div>
+      <div *ngFor="let data of websitesData" style="height: 157px;">
+        <div style="float:left;margin-left: 40px;margin-top: 75px;"><span>{{data.websiteName}}网站负责人幕布照片</span></div>
+
+        <div style="margin-top: 10px;">
+          <nz-upload
+            [nzBeforeUpload] = 'beforeUpload'
+            [nzAction]="uploadUrl"
+            nzListType="picture-card"
+            [(nzFileList)]="data.curtainList"
+            [nzShowButton]="data.curtainList.length < 1"
+            [nzShowUploadList]="showUploadList"
+            (nzChange) = 'curtainFunction($event,data.id)'
+            [nzPreview]="handlePreview">
+            <i nz-icon type="plus"></i>
+            <div class="ant-upload-text">Upload</div>
+          </nz-upload>
+          <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="previewVisible=false">
+            <ng-template #modalContent>
+              <img [src]="previewImage" [ngStyle]="{ 'width': '100%' }" />
+            </ng-template>
+          </nz-modal>
+        </div>
+
+
+        <!--<div class="per_examples" style="float: left;margin-top: -179px;margin-left: 60%;">-->
+          <!--<span style="display: inline-block;float: left;margin-top: 15px;margin-left: -30px;">示例</span>-->
+          <!--<div>-->
+            <!--<img src="{{imgLoadUrl}}/beian/assets/images/beian-renxiang.png" alt="幕布照片">-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div style="text-align: center;margin-top: 40px;">
+      <button nz-button nzType="primary" (click)="submitAudit()">提交复审</button>
+      &nbsp;&nbsp;
+      <button nz-button nzType="default" (click)="secondTrialReturn()">返回</button>
+    </div>
+
+    <div>
+      <nz-modal [(nzVisible)]="submitNoteShow" nzTitle="提示" (nzOnCancel)="submitCancel()" (nzOnOk)="submitOk()">
+        <p>确认提交复审吗？</p>
+      </nz-modal>
+    </div>
+
+  </div>
+
+</div>
+

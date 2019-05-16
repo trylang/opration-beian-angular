@@ -1,0 +1,146 @@
+<div>
+  <div class="page-title">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a routerLink="../../../"><span>备案管理</span></a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>修改网站信息</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+
+  <div class="top-common-style">
+    <div>
+      <div class="common-title">
+        <p>网站基本信息</p>
+      </div>
+      <div class="top-left-style">
+        <div class="left-label-style">
+          <span>网站名称：</span>
+          <input nz-input [(ngModel)]="websiteData.websiteName">
+        </div>
+        <div>
+          <span style="display: inline-block;vertical-align: top;">已验证域名：</span>
+          <div class="input-box">
+            <!--新政策的要求-->
+            <p *ngFor = "let key of domainList;let i = index;" style="color:#282F38;">
+              <span *ngIf="key.id>0">{{key.domain}}</span>
+              <i class="anticon anticon-close domain-icon" *ngIf = "domainList.length > 1" style="cursor: pointer;" (click)="deleteDomainItem(i)"></i>
+            </p>
+
+            <!--<p *ngFor="let key of domainList; let i = index;" style="color:#282F38;">-->
+              <!--<span *ngIf="key.id>0">{{key.domain}}</span>-->
+              <!--<input style="width: 70%;margin-bottom: 10px;" *ngIf="!key.id" nz-input [(ngModel)]="key.domain">-->
+              <!--<i class="anticon anticon-close domain-icon" style="cursor: pointer;" (click)="deleteDomainItem(i)"></i>-->
+            <!--</p>-->
+            <!--<span *ngIf="domainList.length<5" class="plus-domain" style="color:#36B3DF;cursor: pointer;" (click)="addDomainItem()"><i class="anticon anticon-plus-circle-o"></i>  继续添加域名（多个域名需指向同一个网站）</span>-->
+          </div>
+        </div>
+        <div class="left-label-style">
+          <span>网站首页URL：</span>
+          <input [(ngModel)]="websiteData.homeUrl" nz-input>
+        </div>
+        <div style="display:flex;">
+          <span style="display: inline-block;vertical-align: top;width:85px;">网站服务内容：</span>
+          <div class="input-box" style="display: inline-block;flex:1">
+            <nz-checkbox-wrapper (nzOnChange)="changeHandle($event)">
+              <div nz-row>
+                <div nz-col nzSpan="8" *ngFor="let key of optionObj.serviceContentList">
+                  <label nz-checkbox [nzValue]="key" [ngModel]="key.checked">{{key.name}}</label>
+                </div>
+              </div>
+            </nz-checkbox-wrapper>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-right-style">
+        <div class="label-style">
+          <span>网站IP地址：</span>
+          <input [(ngModel)]="websiteData.instanceIp" nz-input>
+        </div>
+        <div class="label-style">
+          <span>网站语言选择：</span>
+          <nz-select class="card-type-style" [(ngModel)]="websiteData.languageCode" nzAllowClear>
+            <nz-option
+              *ngFor="let option of optionObj.languageList"
+              [nzLabel]="option.name"
+              [nzValue]="option.code">
+            </nz-option>
+          </nz-select>
+        </div>
+        <div class="label-style">
+          <span>前置或专项审批内容：</span>
+          <nz-select class="card-type-style" [(ngModel)]="websiteData.specialApprovalCode" nzAllowClear>
+            <nz-option
+              *ngFor="let option of optionObj.specialApprovalList"
+              [nzLabel]="option.name"
+              [nzValue]="option.code">
+            </nz-option>
+          </nz-select>
+        </div>
+        <div class="label-style">
+          <span>备注：</span>
+          <textarea [(ngModel)]="websiteData.note" nz-input [nzAutosize]="{ minRows: 3, maxRows: 3 }" maxlength="200"></textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-common-style">
+    <div class="common-title">
+      <p>网站负责人信息</p>
+    </div>
+    <div class="bottom-left-style">
+      <div class="label-style">
+        <span>负责人姓名：</span>
+        <input [(ngModel)]="websiteData.headerName" nz-input>
+      </div>
+      <div class="label-style">
+        <span>负责人证件类型：</span>
+        <nz-select class="card-type-style" [(ngModel)]="websiteData.headerType">
+          <nz-option
+            *ngFor="let option of optionObj.certificationList"
+            [nzValue]="option.code"
+            [nzLabel]="option.name"
+            [nzDisabled]="option.name !=='身份证'">
+          </nz-option>
+        </nz-select>
+      </div>
+      <div class="label-style">
+        <span>负责人证件号码：</span>
+        <input [(ngModel)]="websiteData.headerNum" nz-input>
+      </div>
+      <div class="label-style">
+        <span>联系方式1（手机）：</span>
+        <input [(ngModel)]="websiteData.telephone1" nz-input>
+      </div>
+    </div>
+
+    <div class="bottom-right-style">
+      <div class="label-style">
+        <span>验证码：</span>
+        <input style="width: 20%;" nz-input [(ngModel)] ="websitesReturnParams.validateCode">
+        <button style="min-width: 20%;max-width: 30%;margin-left: 15px;" nz-button  (click)="sendPhoneVerification()">{{code_context}}</button>
+      </div>
+      <div class="label-style">
+        <span>联系方式2（座机）：</span>
+        <input [(ngModel)]="websiteData.telephone2" nz-input>
+      </div>
+      <div class="label-style">
+        <span>应急联系方式（手机号）：</span>
+        <input [(ngModel)]="websiteData.emergencyPhone" nz-input>
+      </div>
+      <div class="label-style">
+        <span>电子邮件地址：</span>
+        <input [(ngModel)]="websiteData.email" nz-input>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom-sponsor-style">
+    <button  nz-button nzType="primary" (click)="modifyWebsiteNext()">下一步</button>
+    <button  nz-button routerLink="../../../">返回</button>
+  </div>
+</div>
+
