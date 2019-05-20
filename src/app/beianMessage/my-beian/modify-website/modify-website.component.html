@@ -39,18 +39,12 @@
           <span>网站首页URL：</span>
           <input [(ngModel)]="websiteData.homeUrl" nz-input>
         </div>
-        <div style="display:flex;">
-          <span style="display: inline-block;vertical-align: top;width:85px;">网站服务内容：</span>
-          <div class="input-box" style="display: inline-block;flex:1">
-            <nz-checkbox-wrapper (nzOnChange)="changeHandle($event)">
-              <div nz-row>
-                <div nz-col nzSpan="8" *ngFor="let key of optionObj.serviceContentList">
-                  <label nz-checkbox [nzValue]="key" [ngModel]="key.checked">{{key.name}}</label>
-                </div>
-              </div>
-            </nz-checkbox-wrapper>
-          </div>
+        <div class="modify-website-content" style="display:flex;">
+          <service-content [list]="optionObj.serviceContentList"
+            (handleService)="changeHandle($event)">
+          </service-content>
         </div>
+        
       </div>
 
       <div class="top-right-style">
@@ -68,6 +62,7 @@
             </nz-option>
           </nz-select>
         </div>
+        
         <div class="label-style">
           <span>前置或专项审批内容：</span>
           <nz-select class="card-type-style" [(ngModel)]="websiteData.specialApprovalCode" nzAllowClear>

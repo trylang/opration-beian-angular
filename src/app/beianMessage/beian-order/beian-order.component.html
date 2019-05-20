@@ -59,13 +59,13 @@
           <td>
             <a style="margin-right: 10px;" routerLink="detail/{{data.id}}">查看详情</a>
 
-            <a *ngIf="data.statusId !=='approvalsuccess'" (click)="showModal(data.id)">撤销备案</a>
+            <a *ngIf="data.statusId !=='approvalsuccess'" (click)="showModal(data.id)">删除订单</a>
           </td>
         </tr>
       </tbody>
     </nz-table>
   </article>
-  <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-    <p>确认撤销备案吗？</p>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="是否确认删除订单？" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <p>删除订单后，该订单的备案信息将会被删除，且不可撤销，请谨慎操作</p>
   </nz-modal>
 </section>

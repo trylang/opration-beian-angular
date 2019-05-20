@@ -1,12 +1,10 @@
 
 <div class="full-page">
   <header class="header">
-    <!-- <p class="header-title">填写网站信息 --- {{remarkShow}} --- {{websitesListShow}}</p> -->
     <p class="header-title">填写网站信息</p>
   </header>
   <nav class="web-container">
 
-    <!-- <div *ngIf="(websites | mywebsite).length > 0 || websitesListShow"> -->
     <div *ngIf="websites.length > 0 || websitesListShow">
       <h5 class="title">已填写的网站</h5>
       <div class="content">
@@ -21,7 +19,6 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr *ngFor="let data of (basicTable.data | mywebsite)"> -->
             <tr *ngFor="let data of basicTable.data">
               <td>{{data.websiteName}}</td>
               <td>{{data.domain}}</td>
@@ -58,7 +55,6 @@
                 [(ngModel)]="key.domain" (blur)="checkWebsite(i, key.domain)">
                 <i *ngIf="key.isFirst==0" class="anticon anticon-close domain-icon" (click)="deleteDomainItem(i)"></i>
               </p>
-              <!-- <span *ngIf="websitesParam.domainList.length<5" class="plus-domain" (click)="addDomainItem()"><i class="anticon anticon-plus-circle-o"></i>继续添加域名（多个域名需指向同一个网站）</span> -->
               <span *ngIf="websitesParam.domainList.length<typeinfo[param.type].domaincount" class="plus-domain" (click)="addDomainItem()"><i class="anticon anticon-plus-circle-o"></i>继续添加域名（多个域名需指向同一个网站）</span>
           </div>
           <span class="remark-label">{{remarkObj.domain}}</span>
@@ -77,20 +73,6 @@
         [remark]="remarkObj.serviceContentName"
         (handleService)="changeHandle($event)"
         [nzTitle]="promptMessage.websiteService" nzPlacement="rightBottom" nz-tooltip></service-content>
-
-        <!-- <div class="web-item">
-          <span class="input-label"><i class="required-icon">*</i>网站服务内容：</span>
-          <div class="input-box">
-            <nz-checkbox-wrapper (nzOnChange)="changeHandle($event)">
-              <div nz-row>
-                <div nz-col nzSpan="8" *ngFor="let key of optionObj.serviceContentList">
-                  <label nz-checkbox [nzValue]="key" [ngModel]="key.checked">{{key.name}}</label>
-                </div>
-              </div>
-            </nz-checkbox-wrapper>
-          </div>
-          <span class="remark-label">{{remarkObj.serviceContentName}}</span>
-        </div> -->
 
         <div class="web-item">
           <span class="input-label"><i class="required-icon">*</i>网站IP地址：</span>

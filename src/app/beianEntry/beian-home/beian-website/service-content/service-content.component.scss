@@ -4,6 +4,23 @@
   color:rgba(54,179,223,1);
   cursor: pointer;
   position: absolute;
-  right: 12rem;
+  right: 14rem;
   top: -.5rem;
+}
+
+:host-context(.modify-website-content) .web-item{
+  justify-content: left;
+  .required-icon {
+    display: none;
+  }
+  .input-label {
+    width: 100px;
+    text-align: left;
+  }
+  .input-box {
+    width: 500px;
+  }
+  .more, .fold {
+    right: 0;
+  }
 }

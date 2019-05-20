@@ -51,9 +51,11 @@ export class ServiceContentComponent implements OnChanges {
 
   changeHandle(event) {
     const codeList = event.map(item => item.code);
-    let serviceList = !this.ifMore ? this.list : this.simpleServiceList;
-    serviceList.forEach(item => {
-      item.checked = codeList.includes(item.code) ? true: false;
+    const serviceList = [this.list, this.simpleServiceList];
+    serviceList.forEach(service => {
+      service.forEach(item => {
+        item.checked = codeList.includes(item.code) ? true: false;
+      })
     });
 
     this.handleService.emit(event);

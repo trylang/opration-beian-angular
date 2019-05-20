@@ -17,6 +17,7 @@ import { PasswordVerificationComponent } from './password-verification/password-
 import { ProductVerificationComponent } from './product-verification/product-verification.component';
 import { ModifyWebsiteComponent } from './modify-website/modify-website.component';
 import { ModifyDetailComponent } from './modify-detail/modify-detail.component';
+import { ServiceContentComponent } from '../../beianEntry/beian-home/beian-website/service-content/service-content.component';
 
 const routes: Routes = [
   {
@@ -89,7 +90,8 @@ const routes: Routes = [
     PasswordVerificationComponent,
     ProductVerificationComponent,
     ModifyWebsiteComponent,
-    ModifyDetailComponent
+    ModifyDetailComponent,
+    ServiceContentComponent,
   ]
 })
 export class MyBeianModule { }
